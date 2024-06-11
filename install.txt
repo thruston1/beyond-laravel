@@ -1,0 +1,5 @@
+Create Link for uploads
+Windows Example Using CMD
+mklink /J C:\xampp\htdocs\ai_cha\public\uploads C:\xampp\htdocs\ai_cha\storage\app\uploads
+Linux Example Using Terminal
+ln -s /var/www/ai_cha/storage/app/uploads /var/www/ai_cha/public/uploads

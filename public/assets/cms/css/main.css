@@ -1,0 +1,40 @@
+/* ----------------------main-header------------------------------ */
+/* .main-header{
+    background-color: #E4002B;
+} */
+/* .navbar-light .navbar-nav .nav-link{
+    color: #fff;
+} */
+/* -------------------------------------------------------------------- */
+
+/* -----------------------order product------------------------------------- */
+.bg-login {
+    background-image: url(../image/bg-login.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.sidebar a {
+    color: #fff !important;
+}
+
+.order-product-list .card-list {
+    border: 4px solid transparent;
+    height: 0px;
+    padding-bottom: 155%;
+}
+.order-product-list .active {
+    border: #e4002b solid 4px;
+}
+/* -------------------------------------------------------------------------- */
+
+.select2-container .select2-selection--single {
+    height: 40px;
+}
+
+img.img-responsive.max-image-preview {
+    object-fit: contain;
+    max-width: 250px;
+    max-height: 250px;
+}
