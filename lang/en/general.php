@@ -412,4 +412,9 @@ return [
     'landing' => 'Landing',
     'banner' => 'Banner',
     'heading' => 'Heading',
+
+    'upload_data_load' => 'Upload Data Load',
+    'setup_strategy_call' => 'Setup Strategy Call',
+    'upload_file' => 'Upload File',
+    'config'=> 'Config',
 ];

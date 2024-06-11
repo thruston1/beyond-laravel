@@ -1,6 +1,6 @@
 @extends('website._base.layout')
 
-@section('title', 'Landing')
+@section('title', 'Beyond Laravel')
 
 
 @section('content')

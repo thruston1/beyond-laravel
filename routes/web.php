@@ -38,6 +38,11 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
                 'App\Http\Controllers\Admin\UsersController' => 'user',
                 'App\Http\Controllers\Admin\ProductController' => 'product',
                 'App\Http\Controllers\Admin\CategoryController' => 'category',
+                // upload file
+                'App\Http\Controllers\Admin\UploadDataLoadController' => 'uploadLoad',
+
+                // config
+                'App\Http\Controllers\Admin\SetupStrategyCall' => 'strategy',
             ];
 
             foreach ($listRouter as $controller => $linkName) {
@@ -48,6 +53,9 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
                         break;
                     case 'product':
                         $router->get($linkName . '/{id}/password', $controller . '@export')->name('admin.' . $linkName . '.export');
+                        break;
+                    case 'uploadLoad':
+                        $router->post($linkName . '/ajax-data', $controller . '@ajaxData')->name('admin.' . $linkName . '.ajaxData');
                         break;
                 }
                 $router->get($linkName . '/data', $controller . '@dataTable')->name('admin.' . $linkName . '.dataTable');

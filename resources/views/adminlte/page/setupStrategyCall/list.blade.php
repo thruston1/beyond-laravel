@@ -41,13 +41,10 @@
                 @endif
                 <!-- /.card-header -->
                 <div class="card-body overflow-auto">
-                    <table class="table table-bordered table-striped" id="data1">
-                    </table>
+                    
                 </div>
                 <!-- /.card-body -->
             </div>
-
-            <div id="uploadcampaigndata"></div>
         </div>
     </section>
 @stop
@@ -57,22 +54,22 @@
     <script type="text/javascript">
         'use strict';
         let table;
-        table = $('#data1').DataTable({
-            serverSide: true,
-            processing: true,
-            // pageLength: 25,
-            // lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            ajax: '{{ route('admin.' . $thisRoute . '.dataTable') }}',
-            aaSorting: [ {!! isset($listAttribute['aaSorting']) ? $listAttribute['aaSorting'] : "[0,'desc']" !!}],
-            columns: [
-                    @foreach($passing as $fieldName => $fieldData)
-                {data: '{{ $fieldName }}', title: "{{ __($fieldData['lang']) }}" <?php echo strlen($fieldData['custom']) > 0 ? $fieldData['custom'] : ''; ?> },
-                @endforeach
-            ],
-            fnDrawCallback: function( oSettings ) {
-                // $('a[data-rel^=lightcase]').lightcase();
-            }
-        });
+        // table = $('#data1').DataTable({
+        //     serverSide: true,
+        //     processing: true,
+        //     // pageLength: 25,
+        //     // lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
+        //     ajax: '{{ route('admin.' . $thisRoute . '.dataTable') }}',
+        //     aaSorting: [ {!! isset($listAttribute['aaSorting']) ? $listAttribute['aaSorting'] : "[0,'desc']" !!}],
+        //     columns: [
+        //             @foreach($passing as $fieldName => $fieldData)
+        //         {data: '{{ $fieldName }}', title: "{{ __($fieldData['lang']) }}" <?php echo strlen($fieldData['custom']) > 0 ? $fieldData['custom'] : ''; ?> },
+        //         @endforeach
+        //     ],
+        //     fnDrawCallback: function( oSettings ) {
+        //         // $('a[data-rel^=lightcase]').lightcase();
+        //     }
+        // });
 
         function actionData(link, method) {
 

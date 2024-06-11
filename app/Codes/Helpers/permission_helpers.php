@@ -319,13 +319,42 @@ if ( ! function_exists('listAllMenu')) {
             //     'type' => 1
             // ],
             [
-                'name' => __('general.product'),
-                'icon' => '<i class="nav-icon fas fa-file"></i>',
-                'title' => __('general.product'),
-                'active' => ['admin.product.'],
-                'route' => 'admin.product.index',
-                'key' => 'product',
-                'type' => 1
+                'name' => __('general.config'),
+                'icon' => '<i class="nav-icon fas fa-gear"></i>',
+                'title' => __('general.config'),
+                'active' => [
+                    'admin.strategy.',
+                ],
+                'type' => 2,
+                'data' => [
+                    [
+                        'name' => __('general.setup_strategy_call'),
+                        'title' => __('general.setup_strategy_call'),
+                        'active' => ['admin.strategy.'],
+                        'route' => 'admin.strategy.index',
+                        'key' => 'strategy',
+                        'type' => 1
+                    ],
+                ],
+            ],
+            [
+                'name' => __('general.upload_file'),
+                'icon' => '<i class="nav-icon fas fa-upload"></i>',
+                'title' => __('general.upload_file'),
+                'active' => [
+                    'admin.uploadLoad.',
+                ],
+                'type' => 2,
+                'data' => [
+                    [
+                        'name' => __('general.upload_data_load'),
+                        'title' => __('general.upload_data_load'),
+                        'active' => ['admin.uploadLoad.'],
+                        'route' => 'admin.uploadLoad.index',
+                        'key' => 'uploadLoad',
+                        'type' => 1
+                    ],
+                ],
             ],
             [
                 'name' => __('general.setting'),
@@ -402,7 +431,7 @@ if ( ! function_exists('listAvailablePermission'))
 
 
         foreach ([
-                     'admin', 'role', 'product', 'category'
+                     'admin', 'role', 'category', 'uploadLoad', 'strategy'
                  ] as $keyPermission) {
             $listPermission[$keyPermission] = [
                 'list' => [
@@ -434,7 +463,8 @@ if ( ! function_exists('listAvailablePermission'))
         $listPermission['admin']['edit'][] = 'admin.admin.password';
         $listPermission['admin']['edit'][] = 'admin.admin.updatePassword';
 
-        $listPermission['product']['list'][] = 'admin.product.export';
+        
+        $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.ajaxData';
 
         return $listPermission;
 
