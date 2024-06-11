@@ -65,3 +65,6 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
 Route::get('/', ['uses' => 'App\Http\Controllers\Website\WebController@index'])->name('home.index');
 Route::get('/ctm-login', ['uses' => 'App\Http\Controllers\Website\HomeController@getLogin'])->name('home.login');
 
+Route::get('/call-center', ['uses' => 'App\Http\Controllers\Website\CallCenterController@index'])->name('callCenter.index');
+Route::get('/call-screen', ['uses' => 'App\Http\Controllers\Website\CallCenterController@callCenter'])->name('callCenter.callScreen');
+
