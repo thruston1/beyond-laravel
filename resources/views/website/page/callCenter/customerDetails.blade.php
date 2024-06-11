@@ -232,6 +232,5 @@
     
     @include('website.page.callCenter.customerValidation')
     @include('website.page.callCenter.customerFinalResults')
-	<?php  // $this->view('templates/callScreen/customerFinalResults'); ?>
 
 {{-- <?php endif; ?> --}}
