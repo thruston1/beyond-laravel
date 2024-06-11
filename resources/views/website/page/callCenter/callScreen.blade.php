@@ -8,11 +8,7 @@
         <div class="card w-100">
             <div class="card-body">
                 <div class="d-flex">
-                    <div class="mx-auto">
-                        <a href="{{route('admin')}}" class="btn btn-primary">
-                            To CMS
-                        </a>
-                    </div>
+                    @include('website.page.callCenter.customerDetails')
                 </div>
             </div>
         </div>
