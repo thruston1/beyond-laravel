@@ -1,0 +1,1 @@
+$(function(){function e(){timer=setInterval(t,1e3)}function t(){var e=$("#realtime").text();var t=e.split(":");var r,i,s;r=Number(t[0]);i=Number(t[1]);s=Number(t[2]);s++;if(s==60){s=0;i=i+1}if(i==60){i=0;r=r+1}if(r==13){r=1}$("#realtime").text(r+":"+n(i)+":"+n(s))}function n(e){var t=e+"";if(e<10){t="0"+t}return t}e()})

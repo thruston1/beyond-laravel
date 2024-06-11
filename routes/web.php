@@ -63,4 +63,5 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
 });
 
 Route::get('/', ['uses' => 'App\Http\Controllers\Website\WebController@index'])->name('home.index');
+Route::get('/ctm-login', ['uses' => 'App\Http\Controllers\Website\HomeController@getLogin'])->name('home.login');
 

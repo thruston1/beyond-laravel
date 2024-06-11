@@ -16,13 +16,16 @@
     @section('script-top')
     @show
 </head>
-<body class="hold-transitio">
+<body class="hold-transition">
     <div class="row">
-        <div class="col-12 login-page">
+        <div class="col-6 login-page bg-white">
             <div class="login-box">
                 @yield('content')
             </div>
             <!-- /.login-box -->
+        </div>
+        <div class="col-6 bg-login">
+
         </div>
     </div>
 
