@@ -10,30 +10,9 @@
         "production": "mix --production"
     },
     "devDependencies": {
-        "axios": "^0.25",
+        "axios": "^0.21",
         "laravel-mix": "^6.0.6",
         "lodash": "^4.17.19",
         "postcss": "^8.1.14"
-    },
-    "dependencies": {
-        "@fortawesome/fontawesome-free": "^6.0.0",
-        "admin-lte": "^3.2.0",
-        "bootstrap": "^4.6.1",
-        "bootstrap-colorpicker": "^3.4.0",
-        "bootstrap-datepicker": "^1.9.0",
-        "bootstrap-daterangepicker": "^3.1.0",
-        "datatables.net": "^1.11.5",
-        "datatables.net-bs4": "^1.11.5",
-        "datatables.net-dt": "^1.11.5",
-        "datetimepicker": "^0.1.39",
-        "dropify": "^0.2.2",
-        "eonasdan-bootstrap-datetimepicker": "^4.17.49",
-        "glyphicons-halflings": "^1.9.1",
-        "jquery": "^3.6.0",
-        "lightbox2": "^2.11.3",
-        "moment": "^2.29.1",
-        "select2": "^4.1.0-rc.0",
-        "summernote": "^0.8.16",
-        "toastr": "^2.1.4"
     }
 }
