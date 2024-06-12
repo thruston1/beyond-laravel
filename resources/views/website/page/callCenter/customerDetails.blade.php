@@ -220,14 +220,6 @@
 			<?php $this->view('templates/callScreen/customerNewAddress'); ?>
 		<?php endif; ?>	 --}}
 		<!-- End new address -->
-		
-		<div class="custRows _low-height _show-detail _with-border-bottom">
-			<div id="show-details" class="lCust full">
-				<a href="#" class="lCustLabelDetails" id="a-show-details">SHOW</a>
-		
-			</div>
-		</div>
-		
 	</div>
     
     @include('website.page.callCenter.customerValidation')

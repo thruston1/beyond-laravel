@@ -246,7 +246,7 @@ if (! function_exists('collectPassingData')) {
      */
     function collectPassingData($data, string $flag = 'list'): array
     {
-        $result = array();
+        $result = array(); 
         foreach ($data as $fieldName => $fieldValue) {
             if ($fieldValue[$flag]) {
                 $result[$fieldName] = $fieldValue;

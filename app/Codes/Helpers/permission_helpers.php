@@ -323,16 +323,16 @@ if ( ! function_exists('listAllMenu')) {
                 'icon' => '<i class="nav-icon fas fa-gear"></i>',
                 'title' => __('general.config'),
                 'active' => [
-                    'admin.strategy.',
+                    'admin.dataInfoTask.',
                 ],
                 'type' => 2,
                 'data' => [
                     [
-                        'name' => __('general.setup_strategy_call'),
-                        'title' => __('general.setup_strategy_call'),
-                        'active' => ['admin.strategy.'],
-                        'route' => 'admin.strategy.index',
-                        'key' => 'strategy',
+                        'name' => __('general.data_info_task'),
+                        'title' => __('general.data_info_task'),
+                        'active' => ['admin.dataInfoTask.'],
+                        'route' => 'admin.dataInfoTask.index',
+                        'key' => 'dataInfoTask',
                         'type' => 1
                     ],
                 ],
@@ -368,6 +368,14 @@ if ( ! function_exists('listAllMenu')) {
                 ],
                 'type' => 2,
                 'data' => [
+                    [
+                        'name' => __('general.master_campaign'),
+                        'title' => __('general.master_campaign'),
+                        'active' => ['admin.campaign.'],
+                        'route' => 'admin.masterCampaign.index',
+                        'key' => 'masterCampaign',
+                        'type' => 1
+                    ],
                     [
                         'name' => __('general.category'),
                         'title' => __('general.category'),
@@ -431,7 +439,7 @@ if ( ! function_exists('listAvailablePermission'))
 
 
         foreach ([
-                     'admin', 'role', 'category', 'uploadLoad', 'strategy'
+                     'admin', 'role', 'category', 'uploadLoad', 'masterCampaign', 'dataInfoTask'
                  ] as $keyPermission) {
             $listPermission[$keyPermission] = [
                 'list' => [
@@ -464,7 +472,10 @@ if ( ! function_exists('listAvailablePermission'))
         $listPermission['admin']['edit'][] = 'admin.admin.updatePassword';
 
         
+        $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.downloadTxt';
         $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.ajaxData';
+        $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.importCsv';
+        $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.uploadCsv';
 
         return $listPermission;
 

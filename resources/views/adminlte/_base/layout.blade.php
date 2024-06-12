@@ -17,8 +17,18 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <link rel="stylesheet" href="{{ asset('assets/cms/css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/cms/css/main.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/cms/css/theme.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/cms/css/skins/default.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/cms/css/theme-custom.css') }}">
+    <style>
+        /* css reset */
+        p{
+            margin-bottom: 0px;
+        }
+    </style>
     @show
     @section('script-top')
+    <script src="{{ asset('assets/cms/js/modernizr/modernizr.js') }}"></script>
     @show
 </head>
 <body class="hold-transition sidebar-mini">
@@ -120,7 +130,12 @@
 
 @section('script-bottom')
 <script src="{{ asset('assets/cms/js/app.js') }}"></script>
+<script  src="{{ asset('assets/cms/js/nanoscroller/nanoscroller.js') }}"></script>
+
 <script src="{{ asset('assets/cms/js/toastr.js') }}"></script>
+<script src="{{ asset('assets/cms/js/theme.js') }}"></script>
+<script src="{{ asset('assets/cms/js/theme.custom.js') }}"></script>
+<script src="{{ asset('assets/cms/js/theme.init.js') }}"></script>
 @if(session()->has('message'))
     <?php
     switch (session()->get('message_alert')) {

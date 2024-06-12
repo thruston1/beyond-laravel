@@ -56,6 +56,7 @@
                 </div>  
                 <!-- /.card-body -->
             </div>
+            <div id="uploadcampaigndata"></div>
         </div>
     </section>
 @stop
@@ -121,6 +122,7 @@
                        type :$('#type_campaign').val()
                    },
                    success:function(n){
+                    console.log(n);
                        $("#uploadcampaigndata").fadeIn("slow").html(n).promise().done(function() {
                                            
                         })

@@ -9,6 +9,16 @@ if ( ! function_exists('get_list_active_inactive')) {
     }
 }
 
+if ( ! function_exists('get_list_boolean')) {
+    function get_list_boolean()
+    {
+        return [
+            'Y' => __('general.yes'),
+            'N' => __('general.no')
+        ];
+    }
+}
+
 if ( ! function_exists('get_list_read')) {
     function get_list_read()
     {
