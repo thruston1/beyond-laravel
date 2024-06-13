@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('campaignName')->nullable();
             $table->string('campaignDescription')->nullable();
             $table->string('typeTask')->nullable();
-            $table->string('queueName')->nullable();
-            $table->enum('campaignState', array('Y','N'))->default('N');
-            $table->enum('relatedState', array('Y','N'))->default('N');
+            // $table->string('queueName')->nullable();
+            // $table->enum('campaignState', array('Y','N'))->default('N');
+            // $table->enum('relatedState', array('Y','N'))->default('N');
             $table->timestamps();
         });
     }

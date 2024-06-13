@@ -46,8 +46,6 @@
                 </div>
                 <!-- /.card-body -->
             </div>
-
-            <div id="uploadcampaigndata"></div>
         </div>
     </section>
 @stop

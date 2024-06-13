@@ -323,11 +323,21 @@ if ( ! function_exists('listAllMenu')) {
                 'icon' => '<i class="nav-icon fas fa-gear"></i>',
                 'title' => __('general.config'),
                 'active' => [
+                    
+                    'admin.strategyLoad.',
                     'admin.dataInfoTask.',
-                    'admin.strategyLoad.'
+                    'admin.collectionTask.',
                 ],
                 'type' => 2,
                 'data' => [
+                    [
+                        'name' => __('general.collection_task_new'),
+                        'title' => __('general.collection_task_new'),
+                        'active' => ['admin.collectionTask.'],
+                        'route' => 'admin.collectionTask.index',
+                        'key' => 'collectionTask',
+                        'type' => 1
+                    ],
                     [
                         'name' => __('general.data_info_task'),
                         'title' => __('general.data_info_task'),
@@ -336,8 +346,6 @@ if ( ! function_exists('listAllMenu')) {
                         'key' => 'dataInfoTask',
                         'type' => 1
                     ],
-                ],
-                'data' => [
                     [
                         'name' => __('general.strategy_load'),
                         'title' => __('general.strategy_load'),
@@ -375,14 +383,15 @@ if ( ! function_exists('listAllMenu')) {
                     'admin.settings.',
                     'admin.custom-menu.',
                     'admin.admin.',
-                    'admin.role.'
+                    'admin.role.',
+                    'admin.masterCampaign.'
                 ],
                 'type' => 2,
                 'data' => [
                     [
                         'name' => __('general.master_campaign'),
                         'title' => __('general.master_campaign'),
-                        'active' => ['admin.campaign.'],
+                        'active' => ['admin.masterCampaign.'],
                         'route' => 'admin.masterCampaign.index',
                         'key' => 'masterCampaign',
                         'type' => 1
@@ -428,7 +437,24 @@ if ( ! function_exists('listAvailablePermission'))
         $listPermission = [];
 
         foreach ([
-                     'settings', 'page',
+            'collectionTask'
+            ] as $keyPermission) {
+            $listPermission[$keyPermission] = [
+                'list' => [
+                    'admin.'.$keyPermission.'.index',
+                    'admin.'.$keyPermission.'.dataTable'
+                ],
+                'show' => [
+                    'admin.'.$keyPermission.'.show'
+                ],
+            //                'export' => [
+            //                    'admin.'.$keyPermission.'.export',
+            //                ]
+            ];
+        }
+
+        foreach ([
+                     'settings', 'page', 'collectionTask'
                  ] as $keyPermission) {
             $listPermission[$keyPermission] = [
                 'list' => [
@@ -450,7 +476,7 @@ if ( ! function_exists('listAvailablePermission'))
 
 
         foreach ([
-                     'admin', 'role', 'category', 'uploadLoad', 'masterCampaign', 'dataInfoTask', 'strategyLoad'
+                     'admin', 'role', 'category', 'uploadLoad', 'masterCampaign', 'strategyLoad', 'dataInfoTask'
                  ] as $keyPermission) {
             $listPermission[$keyPermission] = [
                 'list' => [
@@ -487,6 +513,9 @@ if ( ! function_exists('listAvailablePermission'))
         $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.ajaxData';
         $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.importCsv';
         $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.importToDB';
+
+        $listPermission['strategyLoad']['list'][] = 'admin.strategyLoad.submitBucket';
+
 
         return $listPermission;
 

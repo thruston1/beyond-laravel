@@ -103,7 +103,7 @@
                         <tbody>
 							@foreach($data as $list)
 							<tr>
-								<td>{{ $list->campaign_name }}</td>
+								<td>{{ $list->campaign }}</td>
 								<td>{{ $list->client_code }}</td>
 								<td>{{ $list->customer_name }}</td>
 								<td>{{ $list->gender }}</td>

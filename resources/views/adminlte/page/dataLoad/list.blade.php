@@ -52,7 +52,7 @@
                             @endforeach
                         </optgroup>
                     </select>
-                <?php endif;?>
+                    <?php endif;?>
                 </div>  
                 <!-- /.card-body -->
             </div>
@@ -66,22 +66,6 @@
     <script type="text/javascript">
         'use strict';
         let table;
-        // table = $('#data1').DataTable({
-        //     serverSide: true,
-        //     processing: true,
-        //     // pageLength: 25,
-        //     // lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
-        //     ajax: '{{ route('admin.' . $thisRoute . '.dataTable') }}',
-        //     aaSorting: [ {!! isset($listAttribute['aaSorting']) ? $listAttribute['aaSorting'] : "[0,'desc']" !!}],
-        //     columns: [
-        //             @foreach($passing as $fieldName => $fieldData)
-        //         {data: '{{ $fieldName }}', title: "{{ __($fieldData['lang']) }}" <?php echo strlen($fieldData['custom']) > 0 ? $fieldData['custom'] : ''; ?> },
-        //         @endforeach
-        //     ],
-        //     fnDrawCallback: function( oSettings ) {
-        //         // $('a[data-rel^=lightcase]').lightcase();
-        //     }
-        // });
 
         function actionData(link, method) {
 
@@ -112,7 +96,17 @@
         $('#type_campaign').change(function(){
 			
             if($('#type_campaign').val()!='0'){
-               $.ajax({
+                getDataUpload();
+           }else{
+               $("#uploadcampaigndata").fadeIn("slow").html('').promise().done(function() {
+                                           
+                        })
+           }
+        })
+
+        function getDataUpload()
+        {
+            $.ajax({
                    type:"POST",
                    headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -131,12 +125,7 @@
                        alert('error; ' + eval(error));
                    }
                })
-           }else{
-               $("#uploadcampaigndata").fadeIn("slow").html('').promise().done(function() {
-                                           
-                        })
-           }
-        })
+        }
 
     </script>
 @stop

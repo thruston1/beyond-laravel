@@ -6,6 +6,7 @@ use App\Codes\Logic\_CrudController;
 use App\Codes\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Yajra\DataTables\DataTables;
 
 class DataInfoTaskController extends _CrudController
 {
@@ -18,7 +19,7 @@ class DataInfoTaskController extends _CrudController
                 'edit' => 0,
                 'show' => 0
             ],
-            'campaign_name'=> [
+            'campaign'=> [
                 'validate' => [
                     'create' => 'required',
                     'edit' => 'required'
@@ -84,6 +85,21 @@ class DataInfoTaskController extends _CrudController
 
 
     }
+
+    // public function dataTable()
+    // {
+    //     $this->callPermission();
+
+    //     $dataTables = new DataTables();
+
+    //     $builder = $this->model::query()->select('*');
+    //     $status= $this->request->get('status');
+    //     if($status){
+    //         $builder = $builder->where('status', '=', $status);
+    //     }
+
+    //     return $this->processDataTable($dataTables, $builder);
+    // }
 
 
 

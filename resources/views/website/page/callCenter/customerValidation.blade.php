@@ -123,7 +123,7 @@
                             {{-- orange --}}
                         {{-- <?php endif; ?>"  --}}
                         "
-                        {{-- name="<?php echo($customer_detail[0]['agreementNo']); ?>"  --}}
+                        {{-- name="<?php echo($customer_detail[0]['agreement_no']); ?>"  --}}
                         value="CALL 1234
                         <?php   // echo(substr(${'filtered'.$no},0,4)); ?>" 
                         readonly="readonly"/>

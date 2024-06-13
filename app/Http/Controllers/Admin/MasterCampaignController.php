@@ -37,26 +37,21 @@ class MasterCampaignController extends _CrudController
                     'edit' => 'required'
                 ],
              ],
-             'queueName' => [
-                'validate' => [
-                    // 'create' => 'required',
-                    // 'edit' => 'required'
-                ],
-             ],
-             'campaignState' => [
-                'type' => 'select',
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
-             'campaignState' => [
-                'type' => 'select',
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
+
+            //  'campaignState' => [
+            //     'type' => 'select',
+            //     'validate' => [
+            //         'create' => 'required',
+            //         'edit' => 'required'
+            //     ],
+            //  ],
+            //  'campaignState' => [
+            //     'type' => 'select',
+            //     'validate' => [
+            //         'create' => 'required',
+            //         'edit' => 'required'
+            //     ],
+            //  ],
         ];
 
         parent::__construct(

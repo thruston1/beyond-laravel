@@ -40,7 +40,7 @@ class UploadDataLoadController extends _CrudController
                 'edit' => 0,
                 'show' => 0
             ],
-            'campaign_name'=> [
+            'campaign'=> [
                 'validate' => [
                     'create' => 'required',
                     'edit' => 'required'
@@ -99,7 +99,6 @@ class UploadDataLoadController extends _CrudController
         ];
 
         $this->headerMaster = [
-                'campaign_name',
                 'client_code',
                 'customer_name',
                 'gender',
@@ -269,6 +268,8 @@ class UploadDataLoadController extends _CrudController
         if (($handle = fopen($path2, "r")) !== FALSE) {
             $flag = true;
             $arrayNo = 0;
+            $bulk_info_task [$arrayNo]['campaign'] = $campaign;
+
             while (($data = fgetcsv($handle, 10000, "|")) !== FALSE) {
                 if($flag) {
                     $flag = false; continue; 
@@ -276,7 +277,7 @@ class UploadDataLoadController extends _CrudController
                 for($no=0;$no<count($header);$no++){
                     $fieldName=$header[$no];
                     $dataValue=$data[$no];
-                    $agreementNo=$data[7];
+                    $agreementNo=$data[6];
                     $bulk_info_task [$arrayNo][$fieldName]= $dataValue;
                     
                 }
@@ -284,7 +285,7 @@ class UploadDataLoadController extends _CrudController
                 $uniqueId=$agreementNo.'-'.date('Y-m-d');
                 array_push($bulk_task, array(
                     'unique_id' => $uniqueId,
-                    'agreementNo' =>$agreementNo,
+                    'agreement_no' =>$agreementNo,
                     'campaign' => $campaign,
 
                 ));

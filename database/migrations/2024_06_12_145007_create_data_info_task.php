@@ -15,7 +15,8 @@ return new class extends Migration
     {
         Schema::create('data_info_task', function (Blueprint $table) {
             $table->id();
-            $table->string('campaign_name')->nullable();
+            $table->string('customer_id')->nullable();
+            $table->string('campaign')->nullable();
             $table->string('client_code')->nullable();
             $table->string('customer_name')->nullable();
             $table->string('gender')->nullable();

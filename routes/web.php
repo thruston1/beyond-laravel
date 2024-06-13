@@ -46,6 +46,7 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
                 'App\Http\Controllers\Admin\MasterCampaignController' => 'masterCampaign',
                 'App\Http\Controllers\Admin\DataInfoTaskController' => 'dataInfoTask',
                 'App\Http\Controllers\Admin\StrategyLoadController' => 'strategyLoad',
+                'App\Http\Controllers\Admin\DataInfoTaskController' => 'collectionTask',
             ];
 
             foreach ($listRouter as $controller => $linkName) {
@@ -54,14 +55,14 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
                         $router->get($linkName . '/{id}/password', $controller . '@password')->name('admin.' . $linkName . '.password');
                         $router->post($linkName . '/{id}/password', $controller . '@updatePassword')->name('admin.' . $linkName . '.updatePassword');
                         break;
-                    case 'product':
-                        $router->get($linkName . '/{id}/password', $controller . '@export')->name('admin.' . $linkName . '.export');
-                        break;
                     case 'uploadLoad':
                         $router->post($linkName . '/import-csv', $controller . '@importCsv')->name('admin.' . $linkName . '.importCsv');
                         $router->post($linkName . '/upload-csv', $controller . '@importToDB')->name('admin.' . $linkName . '.importToDB');
                         $router->get($linkName . '/ajax-data', $controller . '@download_txt')->name('admin.' . $linkName . '.downloadTxt');
                         $router->post($linkName . '/ajax-data', $controller . '@ajaxData')->name('admin.' . $linkName . '.ajaxData');
+                        break;
+                    case 'strategyLoad':
+                        $router->post($linkName . '/bucket-data', $controller . '@submitBucket')->name('admin.' . $linkName . '.submitBucket');
                         break;
                 }
                 $router->get($linkName . '/data', $controller . '@dataTable')->name('admin.' . $linkName . '.dataTable');

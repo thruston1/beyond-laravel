@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->string('unique_id');
             $table->unique('unique_id');
-            $table->string('agreementNo')->nullable();
-            $table->string('last_result')->nullable();
-            $table->string('is_bucket')->nullable();
-            $table->string('Blank')->nullable();
+            $table->string('agreement_no')->nullable();
+            // $table->enum('is_bucket', array('Y','N'))->default('N');
+            $table->bigInteger('data_info_id')->nullable();
             $table->string('campaign')->nullable();
+            $table->integer('status')->default(1);
             
             $table->timestamps();
             

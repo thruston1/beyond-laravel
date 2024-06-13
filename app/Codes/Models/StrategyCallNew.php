@@ -4,20 +4,17 @@ namespace App\Codes\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DataInfoTask extends Model
+class StrategyCallNew extends Model
 {
-    protected $table = 'data_info_task';
+    protected $table = 'strategy_call_new';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'customer_id',
         'campaign',
-        'client_code',
-        'customer_name',
-        'gender',
-        'no_telp_1',
-        'no_telp_2',
-        'no_telp_3',
+        'unique_id',
         'agreement_no',
+        'task_new_id',
+        'agent_id',
+        'status',
     ];
 
     public function getCreatedAtAttribute()

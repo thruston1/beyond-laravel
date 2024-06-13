@@ -99,7 +99,7 @@
 						<thead>
 							<tr>
 								<th>PAYMENT DATE</th>
-								<th>AGREEMENTNO</th>
+								<th>AGREEMENT NO</th>
 								<th>CUSTOMER ID</th>
 								<th>AMOUNT</th>
 								<th>CREATED TIME</th>

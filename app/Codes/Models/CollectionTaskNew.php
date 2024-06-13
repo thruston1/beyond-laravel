@@ -10,11 +10,11 @@ class CollectionTaskNew extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'unique_id',
-        'agreementNo',
-        'last_result',
-        'is_bucket',
-        'Blank',
+        'agreement_no',
+        // 'is_bucket',
+        'data_info_id',
         'campaign',
+        'status',
     ];
 
     public function getCreatedAtAttribute()
@@ -28,8 +28,6 @@ class CollectionTaskNew extends Model
         return \Carbon\Carbon::parse($this->attributes['updated_at'])
             ->format('Y-m-d H:i:s');
     }
-
-    protected $hidden = ['password'];
 
     public function getRole()
     {

@@ -64,7 +64,7 @@
 					</div>
 				</section>
 				<script type="text/javascript">
-				
+
 					$("#upload_task_new_next").click(function(){
 						if($('#userfile').val().length > 0){
 							var data = new FormData($('#file')[0]);
@@ -108,6 +108,7 @@
 									
 									});	
 									$("#upload_task_new_next").hide();
+									getDataUpload();
 								}
 							});
 						}
