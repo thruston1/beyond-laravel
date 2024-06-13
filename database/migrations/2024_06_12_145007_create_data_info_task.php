@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('client_code')->nullable();
             $table->string('customer_name')->nullable();
             $table->string('gender')->nullable();
-            $table->integer('no_telp_1')->nullable();
-            $table->integer('no_telp_2')->nullable();
-            $table->integer('no_telp_3')->nullable();
+            $table->bigInteger('no_telp_1')->nullable();
+            $table->bigInteger('no_telp_2')->nullable();
+            $table->bigInteger('no_telp_3')->nullable();
             $table->string('agreement_no')->nullable();
             $table->timestamps();
         });

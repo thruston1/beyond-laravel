@@ -324,6 +324,7 @@ if ( ! function_exists('listAllMenu')) {
                 'title' => __('general.config'),
                 'active' => [
                     'admin.dataInfoTask.',
+                    'admin.strategyLoad.'
                 ],
                 'type' => 2,
                 'data' => [
@@ -333,6 +334,16 @@ if ( ! function_exists('listAllMenu')) {
                         'active' => ['admin.dataInfoTask.'],
                         'route' => 'admin.dataInfoTask.index',
                         'key' => 'dataInfoTask',
+                        'type' => 1
+                    ],
+                ],
+                'data' => [
+                    [
+                        'name' => __('general.strategy_load'),
+                        'title' => __('general.strategy_load'),
+                        'active' => ['admin.strategyLoad.'],
+                        'route' => 'admin.strategyLoad.index',
+                        'key' => 'strategyLoad',
                         'type' => 1
                     ],
                 ],
@@ -439,7 +450,7 @@ if ( ! function_exists('listAvailablePermission'))
 
 
         foreach ([
-                     'admin', 'role', 'category', 'uploadLoad', 'masterCampaign', 'dataInfoTask'
+                     'admin', 'role', 'category', 'uploadLoad', 'masterCampaign', 'dataInfoTask', 'strategyLoad'
                  ] as $keyPermission) {
             $listPermission[$keyPermission] = [
                 'list' => [
@@ -475,7 +486,7 @@ if ( ! function_exists('listAvailablePermission'))
         $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.downloadTxt';
         $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.ajaxData';
         $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.importCsv';
-        $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.uploadCsv';
+        $listPermission['uploadLoad']['list'][] = 'admin.uploadLoad.importToDB';
 
         return $listPermission;
 

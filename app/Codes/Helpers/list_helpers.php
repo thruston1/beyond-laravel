@@ -90,55 +90,14 @@ if ( ! function_exists('get_list_privilege')) {
     }
 }
 
-if ( ! function_exists('get_list_billing_status')) {
-    function get_list_billing_status()
-    {
-        return [
-            1 => __('general.not_paid'),
-            2 => __('general.waiting'),
-            3 => __('general.need_update'),
-            4 => __('general.due_date'),
-            5 => __('general.confirm'),
-            9 => __('general.void')
-        ];
-    }
-}
 
-if ( ! function_exists('get_list_status_user')) {
-    function get_list_status_user()
-    {
-        return [
-            0 => __('general.pending'),
-            1 => __('general.approve'),
-            2 => __('general.reject')
-        ];
-    }
-}
+
 if ( ! function_exists('get_list_type')) {
     function get_list_type()
     {
         return [
             1 => __('general.normal'),
             2 => __('general.invitation')
-        ];
-    }
-}
-
-if ( ! function_exists('get_list_notification')) {
-    function get_list_notification()
-    {
-        return [
-            1 => __('general.asking_pending'),
-            2 => __('general.house_monthly_fees'),
-            3 => __('general.house_inbox'),
-            4 => __('general.house_report'),
-            5 => __('general.security_reply_report'),
-            6 => __('general.security_report'),
-            7 => __('general.house_emergency_report'),
-            8 => __('general.security_emergency_report'),
-            9 => __('general.organization_emergency_report'),
-            10 => __('general.organization_billing'),
-            11 => __('general.organization_confirm_monthly_fees')
         ];
     }
 }
@@ -211,129 +170,26 @@ if ( ! function_exists('get_list_show_hide')) {
     }
 }
 
-if ( ! function_exists('get_list_position')) {
-    function get_list_position()
+if ( ! function_exists('get_list_status_user')) {
+    function get_list_status_user()
     {
         return [
-            1 => __('general.resident'),
-            2 => __('general.organization')
+            0 => __('general.pending'),
+            1 => __('general.approve'),
+            2 => __('general.reject')
         ];
     }
 }
 
-if ( ! function_exists('get_list_householder')) {
-    function get_list_householder()
+if ( ! function_exists('get_list_status_call')) {
+    function get_list_status_call()
     {
         return [
-            0 => __('general.resident'),
-            1 => __('general.householder'),
-        ];
-    }
-}
-
-if ( ! function_exists('get_list_house_condition')) {
-    function get_list_house_condition()
-    {
-        return [
-            1 => __('general.ok'),
-            2 => __('general.rent'),
-            3 => __('general.empty'),
-            9 => __('general.problem')
-        ];
-    }
-}
-
-if ( ! function_exists('get_list_house_status')) {
-    function get_list_house_status()
-    {
-        return [
-            1 => __('general.active'),
-            2 => __('general.inactive'),
-        ];
-    }
-}
-
-if ( ! function_exists('get_list_type_report')) {
-    function get_list_type_report()
-    {
-        return [
-            1 => __('general.report'),
-            2 => __('general.emergency')
-        ];
-    }
-}
-
-if ( ! function_exists('get_list_report_status')) {
-    function get_list_report_status()
-    {
-        return [
-            1 => __('general.waiting'),
+            1 => __('general.pending'),
             2 => __('general.process'),
-            3 => __('general.waiting_approve'),
-            5 => __('general.done'),
-            9 => __('general.cancel'),
+            80 => __('general.done'),
+            90 => __('general.reject'),
         ];
     }
 }
 
-if ( ! function_exists('get_list_report_status2')) {
-    function get_list_report_status2()
-    {
-        return [
-            2 => __('general.process'),
-            3 => __('general.waiting_approve'),
-        ];
-    }
-}
-
-if ( ! function_exists('get_list_report_status_user_edit')) {
-    function get_list_report_status_user_edit()
-    {
-        return [
-            2 => __('general.process'),
-            5 => __('general.done')
-        ];
-    }
-}
-
-if ( ! function_exists('get_list_shift_data_status')) {
-    function get_list_shift_data_status()
-    {
-        return [
-            1 => __('general.normal'),
-            2 => __('general.full_day'),
-            3 => __('general.day_off')
-        ];
-    }
-}
-
-if ( ! function_exists('get_list_type_prize')) {
-    function get_list_type_prize()
-    {
-        return [
-            1 => __('general.entertainment_prize'),
-            2 => __('general.weekly_prize'),
-            3 => __('general.main_prize')
-        ];
-    }
-}
-if ( ! function_exists('get_list_status_schedule')) {
-    function get_list_status_schedule()
-    {
-        return [
-            1 => __('general.active'),
-            2 => __('general.inactive'),
-            80 => __('general.complete')
-        ];
-    }
-}
-
-if ( ! function_exists('status_news')) {
-    function status_news()
-    {
-        return [
-        80 => __('general.active'),
-        1 => __('general.inactive')
-        ];
-    }
-}

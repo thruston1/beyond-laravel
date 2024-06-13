@@ -64,6 +64,7 @@
 					</div>
 				</section>
 				<script type="text/javascript">
+				
 					$("#upload_task_new_next").click(function(){
 						if($('#userfile').val().length > 0){
 							var data = new FormData($('#file')[0]);
@@ -75,7 +76,7 @@
 								headers: {
 									'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 								},
-								url: '/c_data_application/importcsvnext',
+								url: '{{ route('admin.' . $thisRoute . '.importToDB') }}',
 								data: data,
 								cache: false,
 								contentType: false,
@@ -88,7 +89,13 @@
 									$('#progress-bar').width(percentComplete);
 									$('#progress-bar').html('Processing...');
 								},
-								success: function(t){
+								success: function(result){
+									if(result.success === 1){
+										toastr.success(result.message);
+									}
+									else{
+										toastr.error(result.message);
+									}
 									var percentComplete = '100%';
 										$('#progress').removeClass('progress-striped');
 										$('#progress-bar').removeClass('progress-bar-warning').addClass('progress-bar-success');
@@ -96,30 +103,11 @@
 										$('#progress-bar').html('Uploaded');
 
 										var stack_bar_top = {"dir1": "down", "dir2": "right", "push": "top", "spacing1": 0, "spacing2": 0};
-										var notice = new PNotify({
-											title: 'Notification',
-											text: 'SUCCESS_UPLOAD '+ t + ' ROWS DATA',
-											type: 'success',
-											addclass: 'stack-bar-top',
-											stack: stack_bar_top,
-											width: "100%"
-										});
+										
 									$("#preview-data").fadeIn("slow").html('').promise().done(function() {
 									
 									});	
 									$("#upload_task_new_next").hide();
-									// if(t > 0){
-									// 	$('#application_data').dataTable( {
-									// 			"bDestroy": true,
-									// 			"ajax": {    
-									// 				"url": "/c_data_application/ajax_data",    
-									// 				"type": "POST",
-									// 				"data": {
-									// 			}
-													
-									// 		}		
-									// 	});
-									// }
 								}
 							});
 						}

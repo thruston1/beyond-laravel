@@ -51,38 +51,6 @@ class SettingsController extends _CrudController
                 'type' => 'text',
                 'lang' => 'Contact Us Link'
             ],
-            'social-media-ig' => [
-                'type' => 'text',
-                'lang' => 'Social Media IG'
-            ],
-            'social-media-twitter' => [
-                'type' => 'text',
-                'lang' => 'Social Media Twitter'
-            ],
-            'social-media-fb' => [
-                'type' => 'text',
-                'lang' => 'Social Media FB'
-            ],
-            'social-media-whatsapp' => [
-                'type' => 'text',
-                'lang' => 'Social Media WhatsApp'
-            ],
-            'url-shopee-food' => [
-                'type' => 'text',
-                'lang' => 'URL Shopee Food'
-            ],
-            'url-go-food' => [
-                'type' => 'text',
-                'lang' => 'URL GoFood'
-            ],
-            'url-grab-food' => [
-                'type' => 'text',
-                'lang' => 'URL GrabFood'
-            ],
-            'url-traveloka-eats' => [
-                'type' => 'text',
-                'lang' => 'URL Traveloka Eats'
-            ],
             'copyright' => [
                 'type' => 'text',
                 'lang' => 'Copyright'

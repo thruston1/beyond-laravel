@@ -45,6 +45,7 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
                 // config
                 'App\Http\Controllers\Admin\MasterCampaignController' => 'masterCampaign',
                 'App\Http\Controllers\Admin\DataInfoTaskController' => 'dataInfoTask',
+                'App\Http\Controllers\Admin\StrategyLoadController' => 'strategyLoad',
             ];
 
             foreach ($listRouter as $controller => $linkName) {
@@ -58,7 +59,7 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
                         break;
                     case 'uploadLoad':
                         $router->post($linkName . '/import-csv', $controller . '@importCsv')->name('admin.' . $linkName . '.importCsv');
-                        $router->post($linkName . '/upload-csv', $controller . '@uploadCsv')->name('admin.' . $linkName . '.uploadCsv');
+                        $router->post($linkName . '/upload-csv', $controller . '@importToDB')->name('admin.' . $linkName . '.importToDB');
                         $router->get($linkName . '/ajax-data', $controller . '@download_txt')->name('admin.' . $linkName . '.downloadTxt');
                         $router->post($linkName . '/ajax-data', $controller . '@ajaxData')->name('admin.' . $linkName . '.ajaxData');
                         break;

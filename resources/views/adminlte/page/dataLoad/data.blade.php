@@ -163,14 +163,7 @@
 		
 		else{
 			var stack_bar_top = {"dir1": "down", "dir2": "right", "push": "top", "spacing1": 0, "spacing2": 0};
-			var notice = new PNotify({
-				title: 'Notification',
-				text: 'INPUT_ERROR_OR_EMPTY_FIELD',
-				type: 'error',
-				addclass: 'stack-bar-top',
-				stack: stack_bar_top,
-				width: "100%"
-			});
+			toastr.error('File Not Found');
 		}	
 	})
 

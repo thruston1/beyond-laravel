@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 class UploadDataLoadController extends _CrudController
 {   
     protected $passingDataInfo;
+    protected $headerMaster;
     public function __construct(Request $request)
     {
         $passingData = [
@@ -97,6 +98,18 @@ class UploadDataLoadController extends _CrudController
             ]
         ];
 
+        $this->headerMaster = [
+                'campaign_name',
+                'client_code',
+                'customer_name',
+                'gender',
+                'no_telp_1',
+                'no_telp_2',
+                'no_telp_3',
+                'agreement_no',
+        ];
+                
+
         parent::__construct(
             $request, 'general.upload_data_load', 'uploadLoad', 'Category', 'category',
             $passingData
@@ -154,16 +167,12 @@ class UploadDataLoadController extends _CrudController
     }
 
     public function download_txt(){
-        $tblSetupTask = new TblSetupTask();
-        $tblmasterTask = new TblSetupMasterTask();
 
 		$type=$this->request->get('key');
-        $this->request->get('type');
 		$campaign=$this->request->get('campaign');
-		// echo $type;
-		// exit;
-		$header_master = $tblmasterTask->get_header_master($type);
         
+        $header_master = $this->headerMaster;
+
 		header("Content-type: application/txt");
 		header("Content-Disposition: attachment; filename=\"".$campaign."_template.csv\"");
 		header("Pragma: no-cache");
@@ -179,7 +188,7 @@ class UploadDataLoadController extends _CrudController
 		// } 
 		$table="";
 		foreach ($header_master as $hm) {
-			$table=$table.$hm->fieldName.'|';
+			$table=$table.$hm.'|';
 		}
 		$tes=substr($table,0,-1);
 		print $tes;      
@@ -189,7 +198,6 @@ class UploadDataLoadController extends _CrudController
 	}
 
     public function importcsv() {
-        $tblmasterTask = new TblSetupMasterTask();
         // $this->validate([
         //     'userfile' => 'mimes:csv,txt|max:1004800',
         // ]);
@@ -202,37 +210,111 @@ class UploadDataLoadController extends _CrudController
         // $filePath = $csvFile->move(storage_path('app/uploads/data_load'), $file->getClientOriginalName());
         $filePath = $file->storeAs('csv', $file_name);
 
-            $header_master=$tblmasterTask->get_header_master($type);
-			$header=array();
-			$i=0;
-			foreach ($header_master as $hm) {
-				$header[$i]=$hm->fieldName;
-				$i=$i+1;
-			}   
-            $path2 = public_path('storage/'.$filePath);
-			if (($handle = fopen($path2, "r")) !== FALSE) {
-				$row = 1;
-				while (($data = fgetcsv($handle, 10000, "|")) !== FALSE) {
-					if($row==1){
-						$header_data=$data;
-					}
-					if($row==2){
-						$data_data=$data;	
-						break;
-					}
-					$row=$row+1;
-				}
-			}
-			fclose($handle);
+        $header_master = $this->headerMaster;
+        $header=array();
+        $i=0;
+        foreach ($header_master as $hm) {
+            $header[$i]=$hm;
+            $i=$i+1;
+        }   
+        $path2 = public_path('storage/'.$filePath);
+        if (($handle = fopen($path2, "r")) !== FALSE) {
+            $row = 1;
+            while (($data = fgetcsv($handle, 10000, "|")) !== FALSE) {
+                if($row==1){
+                    $header_data=$data;
+                }
+                if($row==2){
+                    $data_data=$data;	
+                    break;
+                }
+                $row=$row+1;
+            }
+        }
+        fclose($handle);
 
-            $data = $this->data;
-			$data['header']= $header;
-            $data['header_data']= $header_data;
-            $data['data_data']= $data_data;
+        $data = $this->data;
+        $data['header']= $header;
+        $data['header_data']= $header_data;
+        $data['data_data']= $data_data;
 
-			return view($this->listView['preview'], $data);
+        return view($this->listView['preview'], $data);
 		// $this->m_data_application->upload_task('didi',$this->session->userdata('id'));
 	}
 
+    public function importToDB(){
+        $logicSql = new LogicSql(); 
+        $file = $this->request->file('userfile');
+    	$campaign=$this->request->get('campaign');
+    	$type= $this->request->get('type_task');
+    	$file_name = $campaign."_Collection_Task-" . date('Ymd');
+
+        // $filePath = $csvFile->move(storage_path('app/uploads/data_load'), $file->getClientOriginalName());
+        $filePath = $file->storeAs('csv', $file_name);
+
+
+        $header_master = $this->headerMaster;
+        $header=array();
+        $i=0;
+        $agreementNo='';
+        $overdue='';
+        $overdue_index='';
+        foreach ($header_master as $hm) {
+            $header[$i]=$hm;
+            $i=$i+1;
+        }  
+        $bulk_info_task=array();
+        $bulk_task=array(); 
+        $path2 = public_path('storage/'.$filePath);
+        if (($handle = fopen($path2, "r")) !== FALSE) {
+            $flag = true;
+            $arrayNo = 0;
+            while (($data = fgetcsv($handle, 10000, "|")) !== FALSE) {
+                if($flag) {
+                    $flag = false; continue; 
+                }
+                for($no=0;$no<count($header);$no++){
+                    $fieldName=$header[$no];
+                    $dataValue=$data[$no];
+                    $agreementNo=$data[7];
+                    $bulk_info_task [$arrayNo][$fieldName]= $dataValue;
+                    
+                }
+                
+                $uniqueId=$agreementNo.'-'.date('Y-m-d');
+                array_push($bulk_task, array(
+                    'unique_id' => $uniqueId,
+                    'agreementNo' =>$agreementNo,
+                    'campaign' => $campaign,
+
+                ));
+                $arrayNo = $arrayNo + 1;
+                
+            }
+            $insertTask = $logicSql->insertCollectionNew($bulk_task);
+
+            if($insertTask['success'] == 0){
+                return response()->json([
+                    'success' => 0,
+                    'message' => $insertTask['message'],
+                ]);
+            }
+            $insertDataInfo = $logicSql->insertInfoTask($bulk_info_task);
+
+            if($insertDataInfo['success'] == 0){
+                return response()->json([
+                    'success' => 0,
+                    'message' => $insertDataInfo['message'],
+                ]);
+            }
+            // add data to customer ID + validate data if customer id already exist (under development)
+        }
+        fclose($handle);
+
+        return response()->json([
+            'success' => 1,
+            'message' => 'success insert Data',
+        ]);
+    }
 
 }
