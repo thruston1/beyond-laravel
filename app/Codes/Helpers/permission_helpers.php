@@ -382,12 +382,21 @@ if ( ! function_exists('listAllMenu')) {
                 'active' => [
                     'admin.settings.',
                     'admin.custom-menu.',
+                    'admin.userAgent.',
                     'admin.admin.',
                     'admin.role.',
                     'admin.masterCampaign.'
                 ],
                 'type' => 2,
                 'data' => [
+                    [
+                        'name' => __('general.user_agent'),
+                        'title' => __('general.user_agent'),
+                        'active' => ['admin.userAgent.'],
+                        'route' => 'admin.userAgent.index',
+                        'key' => 'userAgent',
+                        'type' => 1
+                    ],
                     [
                         'name' => __('general.master_campaign'),
                         'title' => __('general.master_campaign'),
@@ -476,7 +485,7 @@ if ( ! function_exists('listAvailablePermission'))
 
 
         foreach ([
-                     'admin', 'role', 'category', 'uploadLoad', 'masterCampaign', 'strategyLoad', 'dataInfoTask'
+                     'admin', 'role', 'category', 'uploadLoad', 'masterCampaign', 'strategyLoad', 'dataInfoTask', 'userAgent'
                  ] as $keyPermission) {
             $listPermission[$keyPermission] = [
                 'list' => [

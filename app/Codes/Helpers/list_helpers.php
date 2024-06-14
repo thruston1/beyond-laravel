@@ -193,8 +193,8 @@ if ( ! function_exists('get_list_status_call')) {
     }
 }
 
-if ( ! function_exists('get_list_status_collection')) {
-    function get_list_status_collection()
+if ( ! function_exists('get_list_collection')) {
+    function get_list_collection()
     {
         return [
             1 => __('general.pending'),

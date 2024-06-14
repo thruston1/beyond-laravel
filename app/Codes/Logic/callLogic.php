@@ -28,34 +28,23 @@ class CallLogic
                 'message' => __('general.error_not_found_', ['field' => 'Collection']),
             ];
         }
-        $bulkInput = array();
+        $bulkInputStrategy = array();
         $bulkInputBucket = array();
         foreach($getCollection as $val){
-            array_push($bulkInput, [
+            array_push($bulkInputStrategy, [
                 'campaign' => $val->campaign,
                 'unique_id' => $val->unique_id,
                 'agreement_no' => $val->agreement_no
             ]);
-            // array_push($bulkInputBucket, [
-            //     'campaign' => $val->campaign,
-            //     'unique_id' => $val->unique_id,
-            //     'agreement_no' => $val->agreement_no
-            // ]);
+            array_push($bulkInputBucket, [
+                'campaign' => $val->campaign,
+                'unique_id' => $val->unique_id,
+            ]);
         }
-
-        $getResult = $logicSql->insertStrategyCall($bulkInput);
+        $getResult = $logicSql->insertBucketStrategy($bulkInputBucket, $bulkInputStrategy);
         if($getResult['success'] == 0){
             return $getResult;
         }
-
-        dd($getResult);
-
-        $getResult = $logicSql->insertBucketLoad($bulkInputBucket);
-        if($getResult['success'] == 0){
-            return $getResult;
-        }
-
-
 
         $updateStatus = CollectionTaskNew::where('campaign', '=', $campaign)
         ->where('status', '=', 1)

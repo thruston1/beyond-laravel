@@ -292,22 +292,15 @@ class UploadDataLoadController extends _CrudController
                 $arrayNo = $arrayNo + 1;
                 
             }
-            $insertTask = $logicSql->insertCollectionNew($bulk_task);
-
-            if($insertTask['success'] == 0){
+            $insertData = $logicSql->insertDataUploadBulk($bulk_info_task, $bulk_task);
+            if($insertData['success'] == 0){
                 return response()->json([
                     'success' => 0,
-                    'message' => $insertTask['message'],
+                    'message' => $insertData['message'],
                 ]);
             }
-            $insertDataInfo = $logicSql->insertInfoTask($bulk_info_task);
-
-            if($insertDataInfo['success'] == 0){
-                return response()->json([
-                    'success' => 0,
-                    'message' => $insertDataInfo['message'],
-                ]);
-            }
+            dd($insertData);
+            
             // add data to customer ID + validate data if customer id already exist (under development)
         }
         fclose($handle);

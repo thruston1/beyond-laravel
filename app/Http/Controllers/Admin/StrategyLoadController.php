@@ -58,57 +58,32 @@ class StrategyLoadController extends _CrudController
                 'edit' => 0,
                 'show' => 0
             ],
-            'campaign'=> [
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
-            'client_code'=> [
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
-            'customer_name'=> [
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
-            'gender'=> [
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
-            'no_telp_1'=> [
-                'type' => 'number',
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
-            'no_telp_2'=> [
-                'type' => 'number',
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
-            'no_telp_3'=> [
-                'type' => 'number',
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
+            'unique_id'=> [
+                'create' => 0,
+                'edit' => 0,
+                'show' => 0
+            ],
             'agreement_no'=> [
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-             ],
+                'create' => 0,
+                'edit' => 0,
+                'show' => 0
+            ],
+            'data_info_id'=> [
+                'create' => 0,
+                'edit' => 0,
+                'show' => 0
+            ],
+            'campaign'=> [
+                'create' => 0,
+                'edit' => 0,
+                'show' => 0
+            ],
+            'status'=> [
+                'type' => 'select',
+                'create' => 0,
+                'edit' => 0,
+                'show' => 0
+            ],
             'created_at' => [
                 'create' => 0,
                 'edit' => 0,
@@ -124,7 +99,8 @@ class StrategyLoadController extends _CrudController
         );
 
         $this->data['listSet'] = [
-            'select' => get_list_active_inactive(),
+            
+            // 'select' => get_list_active_inactive(),
         ];
 
 

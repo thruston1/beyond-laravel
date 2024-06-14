@@ -81,32 +81,8 @@ class LogicSql
         ];
     }
 
-    public function insertInfoTask($bulkData)
-    {   
-       
-        DB::beginTransaction();
-
-        $insert = DataInfoTask::insert($bulkData);
-        if(!$insert){
-            DB::rollBack();
-            return[
-                'success'=> 0,
-                'message' => 'failed insert data'
-            ];
-        }
-
-        DB::commit();
-
-        return[
-            'success'=> 1,
-            'message' => 'success insert data'
-        ];
-    }
-
-    public function insertStrategyCall($bulkData)
-    {   
-
-        foreach ($bulkData as $val) {
+    public function insertDataUploadBulk($dataInfo, $dataCollection){
+        foreach ($dataCollection as $val) {
             $getCollection = StrategyCallNew::where('unique_id','=', $val['unique_id'])->first();
 
             // $validator = Validator::make($val, [
@@ -122,7 +98,26 @@ class LogicSql
         }
 
         DB::beginTransaction();
-        $insert = StrategyCallNew::insert($bulkData);
+        $getLastIdTask = DataInfoTask::orderBy('id', 'DESC')->first();
+        $getId = $getLastIdTask->id ?? 0;
+        $totalArray = count($dataInfo);
+        $insert = DataInfoTask::insert($dataInfo);
+        if(!$insert){
+            DB::rollBack();
+            return[
+                'success'=> 0,
+                'message' => 'failed insert data'
+            ];
+        }
+        $insertedIds = [];
+        for($i=1; $i<=$totalArray; $i++){
+            array_push($insertedIds, $getId+$i);
+        }; 
+        foreach($insertedIds as $index => $val){
+            $dataCollection[$index]['data_info_id'] = $val;
+        }
+
+        $insert = CollectionTaskNew::insert($dataCollection);
         if(!$insert){
             DB::rollBack();
             return[
@@ -131,17 +126,30 @@ class LogicSql
             ];
         }
         DB::commit();
-
-        return[
-            'success'=> 1,
-            'message' => 'success insert data'
-        ];
     }
 
-    public function insertBucketLoad($bulkData)
-    {   
+    public function insertBucketStrategy($bucketData, $strategyData){
+        
+        foreach ($strategyData as $val) {
+            $getCollection = StrategyCallNew::where('unique_id','=', $val['unique_id'])->first();
+
+            // $validator = Validator::make($val, [
+            //     "unique_id"    => "unique",
+            // ]);
+
+            if($getCollection){
+                return[
+                    'success'=> 0,
+                    'message' => $val['unique_id'].' data already inserted'
+                ];
+            }
+        }
+        $getStrategyCall = StrategyCallNew::orderBy('id', 'DESC')->first();
+        $getStrategyId = $getStrategyCall->id ?? 0;
+        $totalArray = count($strategyData);
         DB::beginTransaction();
-        $insert = BucketLoad::insert($bulkData);
+
+        $insert = StrategyCallNew::insert($strategyData);
         if(!$insert){
             DB::rollBack();
             return[
@@ -149,12 +157,24 @@ class LogicSql
                 'message' => 'failed insert data'
             ];
         }
+
+        $insertedIds = [];
+        for($i=1; $i<=$totalArray; $i++){
+            array_push($insertedIds, $getStrategyId+$i);
+        }; 
+
+        foreach($insertedIds as $index => $val){
+            $bucketData[$index]['strategy_call_new_id'] = $val;
+        }
+
         DB::commit();
+
         return[
             'success'=> 1,
-            'data' => $insert,
             'message' => 'success insert data'
         ];
+
+
     }
 
     

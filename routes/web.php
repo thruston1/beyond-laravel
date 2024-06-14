@@ -47,6 +47,7 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
                 'App\Http\Controllers\Admin\DataInfoTaskController' => 'dataInfoTask',
                 'App\Http\Controllers\Admin\StrategyLoadController' => 'strategyLoad',
                 'App\Http\Controllers\Admin\CollectionTaskNewController' => 'collectionTask',
+                'App\Http\Controllers\Admin\UserAgentController' => 'userAgent',
             ];
 
             foreach ($listRouter as $controller => $linkName) {
@@ -80,7 +81,7 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
 
     // for if login confirm
     $router->group(['middleware' => ['webLogin', 'preventBackHistory']], function () use ($router) {
-        
+
     });
 
 

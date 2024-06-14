@@ -11,7 +11,6 @@ class CollectionTaskNew extends Model
     protected $fillable = [
         'unique_id',
         'agreement_no',
-        // 'is_bucket',
         'data_info_id',
         'campaign',
         'status',

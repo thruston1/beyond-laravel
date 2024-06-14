@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('user_agent', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->nullable();
+            $table->string('user_name')->nullable();
             $table->string('full_name')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();

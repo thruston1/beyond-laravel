@@ -100,7 +100,7 @@
             processing: true,
             // pageLength: 25,
             // lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
-            ajax: '{{ route('admin.dataInfoTask.dataTable') }}?status=1',
+            ajax: '{{ route('admin.collectionTask.dataTable') }}?status=1',
             aaSorting: [ {!! isset($listAttribute['aaSorting']) ? $listAttribute['aaSorting'] : "[0,'desc']" !!}],
             columns: [
                     @foreach($passingDataInfo as $fieldName => $fieldData)

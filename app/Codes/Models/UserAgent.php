@@ -9,12 +9,11 @@ class UserAgent extends Model
     protected $table = 'user_agent';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'name',
+        'user_name',
         'full_name',
         'email',
         'password',
-        'extension',
-        'org_id',
+        'campaign_id',
         'status',
     ];
 

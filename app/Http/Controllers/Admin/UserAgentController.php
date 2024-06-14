@@ -19,25 +19,19 @@ class UserAgentController extends _CrudController
                 'edit' => 0,
                 'show' => 0
             ],
+            'user_name' => [
+                'validate' => [
+                    'create' => 'required',
+                    'edit' => 'required'
+                ],
+            ],
             'full_name' => [
                 'validate' => [
                     'create' => 'required',
                     'edit' => 'required'
                 ],
              ],
-            'name' => [
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-            ],
-            'name' => [
-                'type' => 'email',
-                'validate' => [
-                    'create' => 'required',
-                    'edit' => 'required'
-                ],
-            ],
+            
             'password' => [
                 'validate' => [
                     'create' => 'required',
@@ -81,7 +75,6 @@ class UserAgentController extends _CrudController
         );
 
         $this->data['listSet'] = [
-            'role_id' => Role::pluck('name', 'id')->toArray(),
             'status' => get_list_active_inactive()
         ];
 

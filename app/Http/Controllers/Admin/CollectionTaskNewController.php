@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Codes\Logic\_CrudController;
+use App\Codes\Models\DataInfoTask;
 use App\Codes\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -40,6 +41,7 @@ class CollectionTaskNewController extends _CrudController
                 'show' => 0
             ],
             'status'=> [
+                'type' => 'select',
                 'create' => 0,
                 'edit' => 0,
                 'show' => 0
@@ -55,6 +57,11 @@ class CollectionTaskNewController extends _CrudController
             $request, 'general.collection_task_new', 'collectionTask', 'CollectionTaskNew', 'collectionTask',
             $passingData
         );
+
+        $this->data['listSet'] = [
+            // 'data_info_id' => DataInfoTask::pluck('agreement_no', 'id')->toArray(),
+            'status' => get_list_collection()
+        ];
 
 
 
