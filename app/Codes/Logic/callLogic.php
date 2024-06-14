@@ -32,6 +32,8 @@ class CallLogic
         $bulkInputBucket = array();
         foreach($getCollection as $val){
             array_push($bulkInputStrategy, [
+                'task_new_id' => $val->id,
+                'data_info_id' => $val->data_info_id,
                 'campaign' => $val->campaign,
                 'unique_id' => $val->unique_id,
                 'agreement_no' => $val->agreement_no

@@ -126,6 +126,10 @@ class LogicSql
             ];
         }
         DB::commit();
+        return[
+            'success'=> 1,
+            'message' => 'success insert data'
+        ];
     }
 
     public function insertBucketStrategy($bucketData, $strategyData){
@@ -165,6 +169,15 @@ class LogicSql
 
         foreach($insertedIds as $index => $val){
             $bucketData[$index]['strategy_call_new_id'] = $val;
+        }
+
+        $insert = BucketLoad::insert($bucketData);
+        if(!$insert){
+            DB::rollBack();
+            return[
+                'success'=> 0,
+                'message' => 'failed insert data'
+            ];
         }
 
         DB::commit();

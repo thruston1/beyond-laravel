@@ -299,7 +299,6 @@ class UploadDataLoadController extends _CrudController
                     'message' => $insertData['message'],
                 ]);
             }
-            dd($insertData);
             
             // add data to customer ID + validate data if customer id already exist (under development)
         }

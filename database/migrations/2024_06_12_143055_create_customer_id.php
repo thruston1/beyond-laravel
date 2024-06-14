@@ -34,9 +34,8 @@ return new class extends Migration
     // 'campaign' varchar(132) DEFAULT NULL,
     public function up()
     {
-        Schema::create('customer_id', function (Blueprint $table) {
+        Schema::create('customer', function (Blueprint $table) {
             $table->id();
-            $table->string('Customer_ID')->nullable();
             $table->string('current_unique_id')->nullable();
             $table->integer('markedBy')->nullable();
             $table->integer('callCounter')->nullable();

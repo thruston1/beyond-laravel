@@ -12,7 +12,7 @@
         <div class="card-body">
             <p class="login-box-msg">@lang('general.welcome_login')</p>
 
-            {{ Form::open(['route' => 'admin.login.post', 'id'=>'form'])  }}
+            {{ Form::open(['route' => 'web.doLogin', 'id'=>'form'])  }}
                 <div class="input-group mb-3">
                     {{ Form::text('username', old('username'), ['id'=>'username',
                                 'class'=> $errors->has('username') ? 'form-control is-invalid' : 'form-control',

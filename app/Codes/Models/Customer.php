@@ -4,31 +4,19 @@ namespace App\Codes\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class CustomerId extends Model
+class Customer extends Model
 {
-    protected $table = 'customer_id';
+    protected $table = 'customer';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'Customer_ID',
-        'uniqueId',
-        'noKontrak',
-        'tanggalLkd',
-        'overdueDate',
-        'paymentDate',
-        'overdue',
+        'current_unique_id',
         'markedBy',
         'callCounter',
         'callStatus',
         'isSimiliar',
         'isInvalid',
-        'isPaid',
-        'taskStatus',
-        'timeStart',
-        'jamCallBack',
-        'dateStamp',
-        'timeStamp',
-        'ptpDedicated',
         'campaign',
+        'status',
     ];
 
     public function getCreatedAtAttribute()

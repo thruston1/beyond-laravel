@@ -13,6 +13,7 @@ class StrategyCallNew extends Model
         'unique_id',
         'agreement_no',
         'task_new_id',
+        'data_info_id',
         'agent_id',
         'status',
     ];

@@ -265,7 +265,7 @@ ul,li {
 }
 
 .custRows {
-    width: 320px;
+    width: 100%;
     overflow: hidden;
     height: auto;
     /* FOR_DEBUG */

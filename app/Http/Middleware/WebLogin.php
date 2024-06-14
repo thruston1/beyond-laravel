@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Codes\Models\UserAgent;
 use Closure;
 
 class WebLogin
@@ -14,11 +15,27 @@ class WebLogin
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-        if($request->session()->has('admin_id'))
-        {
+    {   
+
+        
+
+        if($request->session()->has('agent_id'))
+        {    
+            $agentId = $request->session()->get('agent_id');
+            $getAgent = UserAgent::where('id', $agentId)->first();
+            if(!$getAgent){
+                session()->flush();
+                return redirect()->route('web.logout');
+            }
+            $request->attributes->add([
+                '_agent' => $getAgent
+            ]);
             return $next($request);
         }
-        return redirect()->route('admin.logout');
+        else{
+            session()->flush();
+            return redirect()->route('web.logout');
+        }
+        
     }
 }

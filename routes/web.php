@@ -80,16 +80,24 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
     // web login for agent
 
     // for if login confirm
-    $router->group(['middleware' => ['webLogin', 'preventBackHistory']], function () use ($router) {
-
-    });
-
+   
+    
 
 });
 
-Route::get('/', ['uses' => 'App\Http\Controllers\Website\WebController@index'])->name('home.index');
-Route::get('/ctm-login', ['uses' => 'App\Http\Controllers\Website\HomeController@getLogin'])->name('home.login');
+Route::group(['prefix'=>'agent', 'middleware' => ['web']], function () use ($router) {
+    $router->get('/ctm-login', ['uses' => 'App\Http\Controllers\Website\AuthController@login'])->name('web.login');
+    $router->post('/do-login', ['uses' => 'App\Http\Controllers\Website\AuthController@doLogin'])->name('web.doLogin');
+    $router->get('/ctm-logout', ['uses' => 'App\Http\Controllers\Website\AuthController@logout'])->name('web.logout');
 
-Route::get('/call-center', ['uses' => 'App\Http\Controllers\Website\CallCenterController@index'])->name('callCenter.index');
-Route::get('/call-screen', ['uses' => 'App\Http\Controllers\Website\CallCenterController@callCenter'])->name('callCenter.callScreen');
+    $router->group(['middleware' => ['webLogin', 'preventBackHistory']], function () use ($router) {
+        $router->get('/call-center', ['uses' => 'App\Http\Controllers\Website\CallCenterController@index'])->name('callCenter.index');
+        $router->get('/call-screen', ['uses' => 'App\Http\Controllers\Website\CallCenterController@callCenter'])->name('callCenter.callScreen');
+    });
+});
+
+Route::get('/', ['uses' => 'App\Http\Controllers\Website\WebController@index'])->name('web.index');
+
+
+
 

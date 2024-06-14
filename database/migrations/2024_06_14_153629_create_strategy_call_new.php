@@ -20,6 +20,7 @@ return new class extends Migration
             $table->unique('unique_id');
             $table->string('agreement_no')->nullable();
             $table->bigInteger('task_new_id')->nullable();
+            $table->bigInteger('data_info_id')->nullable();
             $table->bigInteger('agent_id')->nullable();
             $table->integer('status')->default(1);
             $table->timestamps();

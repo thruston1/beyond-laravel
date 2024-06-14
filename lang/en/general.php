@@ -427,4 +427,6 @@ return [
     'agent_id' => 'Agent Id',
     'master_campaign' => 'Master Campaign',
     'collection_task_new' => 'Collection Task New',
+    'bucket_is_empty' => 'Bucket is Empty',
+    'user_agent' => 'User Agent',
 ];

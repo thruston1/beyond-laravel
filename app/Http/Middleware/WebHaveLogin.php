@@ -15,9 +15,9 @@ class WebHaveLogin
      */
     public function handle($request, Closure $next)
     {
-        if(!$request->session()->has('admin_id'))
+        if(!$request->session()->has('agent_id'))
             return $next($request);
         // return to web login
-        // return redirect()->route('admin.logout');
+        return redirect()->route('web.logout');
     }
 }

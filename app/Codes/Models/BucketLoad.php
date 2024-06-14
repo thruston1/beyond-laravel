@@ -9,7 +9,7 @@ class BucketLoad extends Model
     protected $table = 'bucket_load';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'uniqueId',
+        'unique_id',
         'strategy_call_new_id',
         'campaign',
         'status',

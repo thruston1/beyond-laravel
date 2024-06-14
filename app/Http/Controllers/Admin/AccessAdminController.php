@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Codes\Logic\AccessLogin;
 use App\Codes\Models\Role;
+use App\Codes\Models\UserAgent;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -29,7 +30,7 @@ class AccessAdminController extends Controller
     public function getLogin()
     {
         $data = $this->data;
-
+        
         return view(env('ADMIN_TEMPLATE').'.page.login', $data);
     }
 
@@ -43,7 +44,7 @@ class AccessAdminController extends Controller
             'username' => 'required',
             'password' => 'required'
         ]);
-
+       
         $user = $this->accessLogin->cekLogin($this->request->get('username'),
             $this->request->get('password'), 'Admin', 'username', 'password', ['status'=>80]);
         if ($user) {
