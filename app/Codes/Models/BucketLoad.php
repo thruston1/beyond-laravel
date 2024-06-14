@@ -10,8 +10,9 @@ class BucketLoad extends Model
     protected $primaryKey = 'id';
     protected $fillable = [
         'uniqueId',
-        'createdBy',
+        'strategy_call_new_id',
         'campaign',
+        'status',
     ];
 
     public function getCreatedAtAttribute()

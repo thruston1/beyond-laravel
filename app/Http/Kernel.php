@@ -47,11 +47,20 @@ class Kernel extends HttpKernel
         'adminLogin' => [
             'adminLogin' => \App\Http\Middleware\AdminLogin::class
         ],
+        
         'adminHaveLogin' => [
             'adminHaveLogin' => \App\Http\Middleware\AdminHaveLogin::class
         ],
         'adminAccessPermission' => [
             'adminAccessPermission' => \App\Http\Middleware\AdminAccessPermission::class
+        ],
+
+        'webLogin' => [
+            'webLogin' => \App\Http\Middleware\WebLogin::class
+        ],
+
+        'webHaveLogin' => [
+            'webHaveLogin' => \App\Http\Middleware\WebHaveLogin::class
         ],
     ];
 

@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('bucket_load', function (Blueprint $table) {
             $table->id();
-            $table->string('uniqueId');
-            $table->unique('uniqueId');
-            $table->string('createdBy')->nullable();
+            $table->string('unique_id');
+            $table->unique('unique_id');
+            $table->bigInteger('strategy_call_new_id')->nullable();
             $table->string('campaign')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

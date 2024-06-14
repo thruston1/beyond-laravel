@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('agreement_no')->nullable();
             $table->bigInteger('task_new_id')->nullable();
             $table->bigInteger('agent_id')->nullable();
-            $table->integer('status')->nullable();
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }

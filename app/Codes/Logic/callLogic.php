@@ -29,18 +29,33 @@ class CallLogic
             ];
         }
         $bulkInput = array();
+        $bulkInputBucket = array();
         foreach($getCollection as $val){
             array_push($bulkInput, [
                 'campaign' => $val->campaign,
                 'unique_id' => $val->unique_id,
                 'agreement_no' => $val->agreement_no
             ]);
+            // array_push($bulkInputBucket, [
+            //     'campaign' => $val->campaign,
+            //     'unique_id' => $val->unique_id,
+            //     'agreement_no' => $val->agreement_no
+            // ]);
         }
 
         $getResult = $logicSql->insertStrategyCall($bulkInput);
         if($getResult['success'] == 0){
             return $getResult;
         }
+
+        dd($getResult);
+
+        $getResult = $logicSql->insertBucketLoad($bulkInputBucket);
+        if($getResult['success'] == 0){
+            return $getResult;
+        }
+
+
 
         $updateStatus = CollectionTaskNew::where('campaign', '=', $campaign)
         ->where('status', '=', 1)

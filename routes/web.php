@@ -46,7 +46,7 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
                 'App\Http\Controllers\Admin\MasterCampaignController' => 'masterCampaign',
                 'App\Http\Controllers\Admin\DataInfoTaskController' => 'dataInfoTask',
                 'App\Http\Controllers\Admin\StrategyLoadController' => 'strategyLoad',
-                'App\Http\Controllers\Admin\DataInfoTaskController' => 'collectionTask',
+                'App\Http\Controllers\Admin\CollectionTaskNewController' => 'collectionTask',
             ];
 
             foreach ($listRouter as $controller => $linkName) {
@@ -74,6 +74,15 @@ Route::group(['prefix' => env('ADMIN_URL'), 'middleware' => ['web']], function (
         $router->get('/', ['uses' => 'App\Http\Controllers\Admin\DashboardController@dashboard'])->name('admin');
 
     });
+
+
+    // web login for agent
+
+    // for if login confirm
+    $router->group(['middleware' => ['webLogin', 'preventBackHistory']], function () use ($router) {
+        
+    });
+
 
 });
 

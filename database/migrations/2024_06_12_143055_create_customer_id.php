@@ -37,25 +37,14 @@ return new class extends Migration
         Schema::create('customer_id', function (Blueprint $table) {
             $table->id();
             $table->string('Customer_ID')->nullable();
-            $table->string('uniqueId')->nullable();
-            $table->string('noKontrak')->nullable();
-            $table->date('tanggalLkd')->nullable();
-            $table->date('overdueDate')->nullable();
-            $table->string('paymentDate')->nullable();
-            $table->integer('overdue')->nullable();
+            $table->string('current_unique_id')->nullable();
             $table->integer('markedBy')->nullable();
             $table->integer('callCounter')->nullable();
             $table->string('callStatus')->nullable();
             $table->enum('isSimiliar', array('Y','N'))->default('N');
             $table->enum('isInvalid', array('Y','N'))->default('N');
-            $table->integer('isPaid')->nullable();
-            $table->string('taskStatus')->nullable();
-            $table->time('timeStart')->nullable();
-            $table->time('jamCallBack')->nullable();
-            $table->date('dateStamp')->nullable();
-            $table->time('timeStamp')->nullable();
-            $table->string('ptpDedicated')->nullable();
             $table->string('campaign')->nullable();
+            $table->integer('status')->default(80);
             $table->timestamps();
         });
     }

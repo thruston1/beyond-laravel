@@ -454,7 +454,7 @@ if ( ! function_exists('listAvailablePermission'))
         }
 
         foreach ([
-                     'settings', 'page', 'collectionTask'
+                     'settings', 'page'
                  ] as $keyPermission) {
             $listPermission[$keyPermission] = [
                 'list' => [

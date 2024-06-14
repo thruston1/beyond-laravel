@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('full_name')->nullable();
             $table->string('email')->nullable();
             $table->string('password')->nullable();
-            $table->string('extension')->nullable();
-            $table->string('org_id')->nullable();
+            $table->string('campaign_id')->nullable();
             $table->tinyInteger('status')->default(80);
             $table->timestamps();
         });

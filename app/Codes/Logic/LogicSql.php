@@ -2,6 +2,7 @@
 
 namespace App\Codes\Logic;
 
+use App\Codes\Models\BucketLoad;
 use App\Codes\Models\CollectionTaskNew;
 use App\Codes\Models\DataInfoTask;
 use App\Codes\Models\masterCampaign;
@@ -133,6 +134,25 @@ class LogicSql
 
         return[
             'success'=> 1,
+            'message' => 'success insert data'
+        ];
+    }
+
+    public function insertBucketLoad($bulkData)
+    {   
+        DB::beginTransaction();
+        $insert = BucketLoad::insert($bulkData);
+        if(!$insert){
+            DB::rollBack();
+            return[
+                'success'=> 0,
+                'message' => 'failed insert data'
+            ];
+        }
+        DB::commit();
+        return[
+            'success'=> 1,
+            'data' => $insert,
             'message' => 'success insert data'
         ];
     }

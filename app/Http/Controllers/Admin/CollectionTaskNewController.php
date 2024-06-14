@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\DataTables;
 
-class DataInfoTaskController extends _CrudController
+class CollectionTaskNewController extends _CrudController
 {
 
     public function __construct(Request $request)
