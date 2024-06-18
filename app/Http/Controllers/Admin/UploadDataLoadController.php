@@ -203,10 +203,8 @@ class UploadDataLoadController extends _CrudController
         $file = $this->request->file('userfile');
     	$campaign=$this->request->get('campaign');
     	$type= $this->request->get('type_task');
+        
     	$file_name = $campaign."_Collection_Task-" . date('Ymd');
-        // $csvFile->move(storage_path('app/uploads/data_load'), $csvFile->getClientOriginalName());
-      
-        // $filePath = $csvFile->move(storage_path('app/uploads/data_load'), $file->getClientOriginalName());
         $filePath = $file->storeAs('csv', $file_name);
 
         $header_master = $this->headerMaster;

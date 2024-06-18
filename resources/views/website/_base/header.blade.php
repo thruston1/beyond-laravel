@@ -1,22 +1,12 @@
 <div class="top-nav" style="background-color: #00BFFF">
     <div class="top-nav-inner">
         <div class="inner-left">
-            <input class="buttonPro green" type="button" onclick="javascript:;" value="CALL SCREEN"/>
-        </div>
-        <div class="inner-left inner-left-summary _ext">
-            <input id="line_check" class="buttonPro green" type="button" value="SIP/"/>
+            <a class="btn btn-success" href="{{route('callCenter.callScreen')}}">CALL SCREEN</a>
         </div>
         <!-- START LOGOUT BUTTON -->		
         <div class="inner-right logout">
-            <input id="logoff" type="button" class="logout-btn"/>
-        </div>
-        <div class="inner-right release">
-            <select class="selInner-right" id="userStat">
-                {{-- <?php foreach($getState/*->result()*/ as $rows4): ?>
-                    <option value="<?php echo($rows4->rCode); ?>" <?php if($rows4->rCode < 1): ?>selected<?php endif; ?>><?php echo($rows4->rDesc); ?></option>
-                <?php endforeach; ?> --}}
-            </select>
-        </div>  
+            <a href="javascript:;" class="logout-btn"></a>
+        </div> 
         <!-- START DATE INFORMATION -->		
         <div class="inner-right dates-nav">
             {{date('l \, j F Y')}}

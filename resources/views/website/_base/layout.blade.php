@@ -18,6 +18,7 @@
             <link rel="stylesheet" href="{{ asset('assets/web/global/css/swiper.css') }}">
             <link rel="stylesheet" href="{{ asset('assets/web/global/css/deskcall.client.css') }}"> 
             <link rel="stylesheet" href="{{ asset('assets/web/global/css/buttonPro.css') }}">
+            <link rel="stylesheet" href="{{ asset('assets/web/global/css/toastr.css ') }}">
             <link rel="stylesheet" href="{{ asset('assets/web/global/jQuery-Timepicker-Addon-master/dist/jquery-ui-timepicker-addon.css') }}">
             <link rel="stylesheet" href="{{asset('assets/web/global/jquery-ui-1.9.2/themes/base/minified/jquery-ui.min.css')}}">
         @show
@@ -45,6 +46,7 @@
             <script src="dist/assets/js/releases.beyond.js"></script>
         @endif --}}
         <script src="{{ asset('assets/web/global/js/timer.counter.beyond.js') }}"></script>
+        <script src="{{ asset('assets/cms/js/toastr.js') }}"></script>
         @show
     </head>
     <body>

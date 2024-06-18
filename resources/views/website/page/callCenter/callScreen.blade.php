@@ -30,12 +30,12 @@
                             <div class="custRows border-bottom w-100">
                                 <div class="lCust">
                                     <label class="lCustLabel">
-                                        Description
+                                        Nama Customer
                                     </label>
                                 </div>
                                 <div class="vCust">
                                     <label class="vCustLabel">
-                                        Value Description
+                                        ((nama customer))
                                     </label>
                                 </div>
                             </div>
@@ -47,24 +47,20 @@
                                 <label>Validation</label>
                             </div>
                             <div class="custRows">
-                                @foreach ($telp as $item)
+                                @foreach ($telp as $index => $item)
                                     <div class="lCust full">
-                                        <label class="lCustLabel"> {{$item['label']}} <?php // echo ${'namePhone'.$no}?></label>
+                                        <label class="lCustLabel"> {{$item['label']}}</label>
                                     </div>
                                     <div class="vCust">
-                                        <input type="hidden" value="{{$item['telp']}}" id="numbers-{{$item['label']}}"/>
-                                        <input type="hidden" value="<?php // echo(${'filtered'.$no}); ?>" id="filtered-{{$item['label']}}"/>
-                                        <input id="number-1" type="button" class="btn buttonPro pink "
-                                            name="agreement_no"
-                                            value="CALL 1234"
-                                            readonly="readonly"/>
+                                        <form action="javascript:;" onsubmit="return submitForm(this)">
+                                            <input type="hidden" name="number" value="{{$item['telp']}}" id="numbers-{{$item['label']}}"/>
+                                            <input type="hidden" name="kontrak" value="" id="filtered-{{$item['label']}}"/>
+                                            <input id="number-{{$index}}" type="submit" class="btn buttonPro pink"
+                                                name="agreement_no"
+                                                value="CALL {{$item['label']}}"
+                                                readonly="readonly"/>
+                                        </form>
                                     </div>
-                        
-                                    {{-- <div class="vCustSel_validation">
-                                        <select id="state-0" class="selCustDet margin-from-right">
-                                            <option value=""> Select Value </option>
-                                        </select>
-                                    </div>   --}}
                                 @endforeach
                                
                             </div>
@@ -110,30 +106,43 @@
                     </div>
                     <div class="col-4">
                         <div class="">
-                            <div class="custRows">
-                                <div class="hCustDet">
-                                    <label>Collection</label>
+                            <form action="javascript:;">
+                                <div class="custRows px-3">
+                                    <div class="hCustDet mb-3">
+                                        <label>Collection</label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="result-collection">Result</label>
+                                        <select class="form-control" id="result-collection" onchange="changeResult()">
+                                            <option disabled selected>Select Result</option>
+                                            @foreach($result as $index => $item)
+                                            <option value="{{$index}}">{{$item}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div id="button-submit-result" class="form-group" style="display: none">
+                                        <button type="submit" class="btn btn-success">Submit Result</button>
+                                    </div>
                                 </div>
-                                {{-- @include('website.page.callCenter.question') --}}
-                                
+                            </form>
+                            
+                            
+                            {{-- performance --}}
+                            {{-- <div class="custRows px-3">
                                 <div class="hCustDet from-top">
                                     <label>Today Performance</label>
                                 </div>
-                        
-                                <div class="custRows">
-                                    <div class="lCust full">
-                                        <div class="t_performance">
-                                            <span class="summary-param">CALLED TODAY : </span><span class="count-summary-value">0</span>
-                                        </div>
-                                        <div class="c_performance">
-                                            <span class="summary-param"> Nama parameter : </span><span class="count-summary-value">0</span>
-                                            <span class="count-percent">0</span>
-                                            <b class="count-percent"> (0%)</b>
-                                        </div>	
-                                    
+                                <div class="lCust full">
+                                    <div class="t_performance">
+                                        <span class="summary-param">CALLED TODAY : </span><span class="count-summary-value">0</span>
                                     </div>
+                                    <div class="c_performance">
+                                        <span class="summary-param"> Nama parameter : </span><span class="count-summary-value">0</span>
+                                        <span class="count-percent">0</span>
+                                        <b class="count-percent"> (0%)</b>
+                                    </div>	
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -144,5 +153,40 @@
 
 @section('script-bottom')
     @parent
+
+    <script>
+        function changeResult(){
+            $('#button-submit-result').show();
+        }
+
+        function submitForm(curr){
+            let numberTelp = curr.number.value;
+            let kontrakNo = curr.kontrak.value;
+            let campaignId = '{{$campaign}}';
+
+            $.ajax({	
+			type: "POST",
+            headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+			url: "{{route('callCenter.doCall')}}",
+			data: {
+                number : numberTelp,
+                kontrak : kontrakNo,
+                campaign : campaignId,
+            },
+			cache: false,
+			success: function(result){
+                if(result.success == 1){
+                    toastr.success(result.message);
+                }
+                else{
+                    toastr.error(result.message);
+                }
+			}
+		});
+
+        }
+    </script>
 
 @stop

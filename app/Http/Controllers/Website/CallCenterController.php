@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Website;
 
 use App\Codes\Logic\WebCallLogic;
+use App\Codes\Logic\AsteriskLogic;
 use App\Codes\Models\Settings;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
@@ -49,8 +50,9 @@ class CallCenterController extends _BaseController
         $getDataBucket = $webLogic->getDataCall();
 
         $data = $this->data;
-
+        $data['campaign'] = $agent->campaign_id;
         if($getDataBucket['success'] == 1){
+            $data['result'] = get_list_result();
             $data['data'] = true;
             $data['telp'] = $getDataBucket['telp'];
             $data['dataValidation'] = $getDataBucket['data'];
@@ -62,6 +64,70 @@ class CallCenterController extends _BaseController
         
  
         return view('website.page.callCenter.callScreen', $data);
+    }
+
+    public function doCall(){
+        $agent =  $this->request->attributes->get('_agent');
+        $agentid = $agent->id;
+
+            $ai = $agent->user_name;
+			// $an = $agent->full_name;
+			$nk = str_replace('-','',$this->request->get('kontrak'));
+			$cn = 'static name';
+			$cmp =  $this->request->get('campaign');
+
+			$PassedInfo = 'PassedInfo='.$ai.'-'.$ai.'-'.$nk.'-'.$cn.'-'.$cmp;
+
+			$ext = $agent->user_name;
+			// $ext = 1001;
+			$number = '0'.$this->request->get('number');	
+			// $number = $this->input->get('number');		
+				
+			/* DEFINE_VARIABLE_FOR_AGI_ORIGINATE */
+			$channel = "SIP/".$ai;
+            // dd($channel);
+			$exten = "77".$number;
+			$context ="TESTTINGANGGA";
+			$priority = 1;
+			$application = NULL;
+			$data = NULL;
+			$timeout = 3000;
+			$callerid = $ext." <".$ext.">";
+			$variable = $PassedInfo;
+			$account = NULL;
+			$async = NULL;
+			$actionid = NULL;
+
+            /* OPEN_CONNECTION */
+            $asteriskLogic = new AsteriskLogic($agentid, $agent);
+			$res = $asteriskLogic->connect("10.10.8.38", "asterisk", "pkp123456");
+
+            if($res == FALSE) {
+				echo(0);
+			}
+
+            elseif($res == TRUE){
+				echo($PassedInfo.$number);
+
+				$has = $asteriskLogic->Originate($channel, $exten, $context, $priority, $application, $data, $timeout, $callerid, $variable, $account, $async, $actionid);				
+				
+				// print_r($has);
+                
+				$asteriskLogic->disconnect();
+                if($has['Response'] == 'success'){
+                    return response()->json([
+                        'success' => 1,
+                        'message' => __('general.call_created'),
+                    ]);
+                }
+                else{
+                    return response()->json([
+                        'success' => 0,
+                        'message' => __('general.failed_call'),
+                    ]);
+                }
+
+			}
     }
 
 }

@@ -91,12 +91,13 @@ Route::group(['prefix'=>'agent', 'middleware' => ['web']], function () use ($rou
     $router->get('/ctm-logout', ['uses' => 'App\Http\Controllers\Website\AuthController@logout'])->name('web.logout');
 
     $router->group(['middleware' => ['webLogin', 'preventBackHistory']], function () use ($router) {
-        $router->get('/call-center', ['uses' => 'App\Http\Controllers\Website\CallCenterController@index'])->name('callCenter.index');
+        $router->get('/', ['uses' => 'App\Http\Controllers\Website\CallCenterController@index'])->name('callCenter.index');
         $router->get('/call-screen', ['uses' => 'App\Http\Controllers\Website\CallCenterController@callCenter'])->name('callCenter.callScreen');
+        $router->post('/do-call', ['uses' => 'App\Http\Controllers\Website\CallCenterController@doCall'])->name('callCenter.doCall');
     });
 });
 
-Route::get('/', ['uses' => 'App\Http\Controllers\Website\WebController@index'])->name('web.index');
+Route::get('/', ['uses' => 'App\Http\Controllers\Website\AuthController@login'])->name('web.index');
 
 
 

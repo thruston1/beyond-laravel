@@ -203,3 +203,13 @@ if ( ! function_exists('get_list_collection')) {
     }
 }
 
+if ( ! function_exists('get_list_result')) {
+    function get_list_result()
+    {
+        return [
+            80 => __('general.success'),
+            90 => __('general.failed'),
+        ];
+    }
+}
+

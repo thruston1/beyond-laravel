@@ -15,6 +15,13 @@ class WebCallLogic
 {   
     protected $getAgent;
     protected $agentId;
+    public $config;
+    public $socket = NULL;
+    public $server;
+    public $port;
+    private $pagi;
+    private $event_handlers;
+    private $_logged_in = FALSE;
     public function __construct($agentId, $dataAgent = null)
     {       
         $this->agentId = $agentId;
@@ -24,6 +31,8 @@ class WebCallLogic
         else{
             $this->getAgent = $dataAgent;
         }
+
+        // setup login dari settings
     }
 
     public function getDataCall(){
