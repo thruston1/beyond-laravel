@@ -70,21 +70,18 @@ class CallCenterController extends _BaseController
         $agent =  $this->request->attributes->get('_agent');
         $agentid = $agent->id;
 
-            $ai = $agent->user_name;
+            $user = $agent->user_name;
 			// $an = $agent->full_name;
 			$nk = str_replace('-','',$this->request->get('kontrak'));
 			$cn = 'static name';
 			$cmp =  $this->request->get('campaign');
 
-			$PassedInfo = 'PassedInfo='.$ai.'-'.$ai.'-'.$nk.'-'.$cn.'-'.$cmp;
-
-			$ext = $agent->user_name;
-			// $ext = 1001;
-			$number = '0'.$this->request->get('number');	
-			// $number = $this->input->get('number');		
+			$PassedInfo = 'PassedInfo='.$user.'-'.$user.'-'.$nk.'-'.$cn.'-'.$cmp;
+                
+			$number = '0'.$this->request->get('number');			
 				
 			/* DEFINE_VARIABLE_FOR_AGI_ORIGINATE */
-			$channel = "SIP/".$ai;
+			$channel = "SIP/".$user;
             // dd($channel);
 			$exten = "77".$number;
 			$context ="TESTTINGANGGA";
@@ -92,7 +89,7 @@ class CallCenterController extends _BaseController
 			$application = NULL;
 			$data = NULL;
 			$timeout = 3000;
-			$callerid = $ext." <".$ext.">";
+			$callerid = $user." <".$user.">";
 			$variable = $PassedInfo;
 			$account = NULL;
 			$async = NULL;

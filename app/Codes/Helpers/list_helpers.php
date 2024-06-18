@@ -213,3 +213,19 @@ if ( ! function_exists('get_list_result')) {
     }
 }
 
+if ( ! function_exists('get_parameter_result')) {
+    function get_parameter_result()
+    {
+        return [
+            0 => 'calldate',
+            1 => 'src',
+            2 => 'dst',
+            3 => 'duration',
+            4 => 'billsec',
+            5 => 'disposition',
+            6 => 'usefield',
+            7 => 'kontrak',
+        ];
+    }
+}
+

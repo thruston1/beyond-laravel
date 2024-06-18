@@ -54,7 +54,7 @@
                                     <div class="vCust">
                                         <form action="javascript:;" onsubmit="return submitForm(this)">
                                             <input type="hidden" name="number" value="{{$item['telp']}}" id="numbers-{{$item['label']}}"/>
-                                            <input type="hidden" name="kontrak" value="" id="filtered-{{$item['label']}}"/>
+                                            <input type="hidden" name="kontrak" value="telp" id="filtered-{{$item['label']}}"/>
                                             <input id="number-{{$index}}" type="submit" class="btn buttonPro pink"
                                                 name="agreement_no"
                                                 value="CALL {{$item['label']}}"
@@ -125,24 +125,6 @@
                                     </div>
                                 </div>
                             </form>
-                            
-                            
-                            {{-- performance --}}
-                            {{-- <div class="custRows px-3">
-                                <div class="hCustDet from-top">
-                                    <label>Today Performance</label>
-                                </div>
-                                <div class="lCust full">
-                                    <div class="t_performance">
-                                        <span class="summary-param">CALLED TODAY : </span><span class="count-summary-value">0</span>
-                                    </div>
-                                    <div class="c_performance">
-                                        <span class="summary-param"> Nama parameter : </span><span class="count-summary-value">0</span>
-                                        <span class="count-percent">0</span>
-                                        <b class="count-percent"> (0%)</b>
-                                    </div>	
-                                </div>
-                            </div> --}}
                         </div>
                     </div>
                 </div>
