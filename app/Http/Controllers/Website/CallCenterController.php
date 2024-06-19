@@ -57,6 +57,7 @@ class CallCenterController extends _BaseController
             $data['telp'] = $getDataBucket['telp'];
             $data['dataValidation'] = $getDataBucket['data'];
             $data['customer'] = $getDataBucket['customer'];
+            $data['bucketData'] = $getDataBucket['bucket_data'];
         }
         else{
             $data['data'] = false;
@@ -125,6 +126,25 @@ class CallCenterController extends _BaseController
                 }
 
 			}
+    }
+
+    public function saveResult(){
+        $agent =  $this->request->attributes->get('_agent');
+        $agentId = $agent->id;
+
+        $noTelp= $this->request->get('no_telp');
+        $index= $this->request->get('index');
+        $result= $this->request->get('result');
+        $strategyId = $this->request->get('strategy_id');
+
+        $webLogic = new WebCallLogic($agentId, $agent);
+        $result = $webLogic->doSaveResult($index, $noTelp, $strategyId, $result);
+
+        return response()->json([
+            'success'=> $result['success'],
+            'index' => $index,
+            'message' => $result['message']
+        ]);
     }
 
 }

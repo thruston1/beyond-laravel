@@ -94,6 +94,7 @@ Route::group(['prefix'=>'agent', 'middleware' => ['web']], function () use ($rou
         $router->get('/', ['uses' => 'App\Http\Controllers\Website\CallCenterController@index'])->name('callCenter.index');
         $router->get('/call-screen', ['uses' => 'App\Http\Controllers\Website\CallCenterController@callCenter'])->name('callCenter.callScreen');
         $router->post('/do-call', ['uses' => 'App\Http\Controllers\Website\CallCenterController@doCall'])->name('callCenter.doCall');
+        $router->post('/save-result', ['uses' => 'App\Http\Controllers\Website\CallCenterController@saveResult'])->name('callCenter.doSaveResult');
     });
 });
 

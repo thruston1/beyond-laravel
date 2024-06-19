@@ -5,6 +5,7 @@ namespace App\Codes\Logic;
 use App\Codes\Models\BucketLoad;
 use App\Codes\Models\Customer;
 use App\Codes\Models\DataInfoTask;
+use App\Codes\Models\HistoryCall;
 use App\Codes\Models\StrategyCallNew;
 use App\Codes\Models\UserAgent;
 use Illuminate\Support\Facades\Storage;
@@ -91,26 +92,64 @@ class WebCallLogic
 
         $getNewTask = DataInfoTask::where('id', '=', $getCurrentBucketData->task_new_id)->first();
         $getCustomer = Customer::where('id', '=', $getNewTask->customer_id)->first();
-        
+        $getHistory = HistoryCall::where('data_info_id', '=', $getNewTask->id)
+            ->orderBy('index_call', 'ASC')
+            ->pluck('no_telp', 'index_call')
+            ->toArray();
+
+        // note agar di permudah saat bucket no telp no sudah masuk ke history tinggal setup status saja
         $noTelp = array();
         $noTelp[] = [
                 'label' => 'no_telp_1',
+                'active' => isset($getHistory[0]) ? true : false,
                 'telp'=> $getNewTask->no_telp_1,
         ];
         $noTelp[] = [
                 'label' => 'no_telp_2',
+                'active' => isset($getHistory[1]) ? true : false,
                 'telp'=> $getNewTask->no_telp_2,
         ];
         $noTelp[] = [
                 'label' => 'no_telp_3',
+                'active' => isset($getHistory[2]) ? true : false,
                 'telp'=> $getNewTask->no_telp_3,
         ];
+
         return[
             'success' => 1,
             'data' => $getNewTask,
             'telp' => $noTelp,
-            'customer' => $getCustomer
+            'customer' => $getCustomer,
+            'bucket_data' => $getCurrentBucketData,
         ];
+    }
+
+    public function doSaveResult($index, $noTelp, $strategyId, $result)
+    {
+        $getStrategy = StrategyCallNew::where('id', '=', $strategyId)->first();
+            $saveHistory = HistoryCall::create([
+                'unique_id' => $getStrategy->unique_id,
+                'index_call' => $index,
+                'no_telp' => $noTelp,
+                'campaign' => $getStrategy->campaign,
+                'agent_id' => $this->agentId,
+                'task_new_id' => $getStrategy->task_new_id,
+                'data_info_id' => $getStrategy->data_info_id,
+                'parameter_result' => $result,
+                'status' => 80,
+            ]); 
+            if($saveHistory){
+                return[
+                    'success'=> 1,
+                    'message' => __('general.result_report_is_saved')
+                ];
+            }else{
+                return[
+                    'success'=> 0,
+                    'message' => __('general.result_report_failed_to_save')
+                ];
+            }
+        
     }
 
     

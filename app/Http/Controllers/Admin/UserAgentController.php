@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Codes\Logic\_CrudController;
+use App\Codes\Models\masterCampaign;
 use App\Codes\Models\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -26,6 +27,13 @@ class UserAgentController extends _CrudController
                 ],
             ],
             'full_name' => [
+                'validate' => [
+                    'create' => 'required',
+                    'edit' => 'required'
+                ],
+             ],
+             'campaign_id' => [
+                'type' => 'select2',
                 'validate' => [
                     'create' => 'required',
                     'edit' => 'required'
@@ -75,7 +83,8 @@ class UserAgentController extends _CrudController
         );
 
         $this->data['listSet'] = [
-            'status' => get_list_active_inactive()
+            'status' => get_list_active_inactive(),
+            'campaign_id' => masterCampaign::pluck('name', 'id')->toArray(),
         ];
 
         // $this->listView['dataTable'] = env('ADMIN_TEMPLATE').'.page.admin.list_button';

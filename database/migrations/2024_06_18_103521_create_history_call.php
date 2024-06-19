@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('history_call', function (Blueprint $table) {
             $table->id();
             $table->string('unique_id')->nullable();
-            $table->string('campaign_id')->nullable();
+            $table->integer('index_call')->nullable();
+            $table->bigInteger('no_telp')->nullable();
+            $table->string('campaign')->nullable();
             $table->bigInteger('agent_id')->nullable();
             $table->bigInteger('task_new_id')->nullable();
             $table->bigInteger('data_info_id')->nullable();
